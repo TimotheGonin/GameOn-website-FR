@@ -1,23 +1,32 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
+	var x = document.getElementById("myTopnav");
+	if (x.className === "topnav") {
+		x.className += " responsive";
+	} else {
+		x.className = "topnav";
+	}
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
+const modalbg = document.querySelector(".bground"); // modal
+const modalBtn = document.querySelectorAll(".modal-btn"); //button active modal
+const modalBtnClose = document.querySelectorAll(".bground .close"); //button close modal
+const formData = document.querySelectorAll(".formData"); // form into modal
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtnClose.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
+let modalIsActive = false; // modal status init
+
 function launchModal() {
-  modalbg.style.display = "block";
+	if (modalIsActive == false) {
+		modalbg.style.display = "block";
+		modalIsActive = true;
+		console.log(modalIsActive);
+	} else if (modalIsActive == true) {
+		modalbg.style.display = "none";
+		modalIsActive = false;
+	}
 }
-
-
