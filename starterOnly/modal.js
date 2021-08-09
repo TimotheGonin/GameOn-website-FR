@@ -50,3 +50,14 @@ const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 	"checkboxNotifiedOfUpcomingEvents"
 );
 const submitButton = document.getElementById("submit-btn");
+
+// country check function loop
+function countryCheck(coutryArray) {
+	for (country of coutryArray) {
+		if (country.checked == true) {
+			console.log(country.value);
+		}
+	}
+}
+
+// countryCheck(locationPastEvent);
