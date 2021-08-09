@@ -61,3 +61,12 @@ function countryCheck(coutryArray) {
 }
 
 // countryCheck(locationPastEvent);
+
+//Terms of use accept checked ?
+function termsOfUseIsChecked() {
+	if (checkboxTermsOfUse.checked == true) {
+		return true;
+	} else {
+		return false;
+	}
+}
