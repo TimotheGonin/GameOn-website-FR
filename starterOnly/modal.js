@@ -70,3 +70,12 @@ function termsOfUseIsChecked() {
 		return false;
 	}
 }
+
+// Value is a number function test
+function valueIsNumber(value) {
+	if (isNaN(value) == true) {
+		return false;
+	} else {
+		return true;
+	}
+}
