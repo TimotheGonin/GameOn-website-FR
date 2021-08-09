@@ -30,3 +30,8 @@ function launchModal() {
 		modalIsActive = false;
 	}
 }
+
+// string length checking function
+function checkMaxLength(value) {
+	return /^.{2,}$/.test(value); //return true if value.length == 2
+}
