@@ -18,6 +18,20 @@ function checkMaxLength(value) {
 	return /^.{2,}$/.test(value); //return true if value.length == 2
 }
 
+// Valid email function test
+function emailIsValid(value) {
+	return /.+\@.+\..+/.test(value); //return true if value is a valid email
+}
+
+// Value is a number function test
+function valueIsNumber(value) {
+	if (isNaN(value) == true) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
 // country check function loop
 function countryCheck(coutryArray) {
 	for (country of coutryArray) {
@@ -37,18 +51,4 @@ function termsOfUseIsChecked() {
 	} else {
 		return false;
 	}
-}
-
-// Value is a number function test
-function valueIsNumber(value) {
-	if (isNaN(value) == true) {
-		return false;
-	} else {
-		return true;
-	}
-}
-
-// Valid email function test
-function emailIsValid(value) {
-	return /.+\@.+\..+/.test(value); //return true if value is a valid email
 }
