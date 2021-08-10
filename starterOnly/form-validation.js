@@ -62,3 +62,15 @@ function submitDisable(element) {
 	element.style.color = "silver";
 }
 submitDisable(submitButton);
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ FISRTNAME INPUT                                                              │
+// └──────────────────────────────────────────────────────────────────────────────┘
+firstName.addEventListener("input", function (event) {
+	let value = event.target.value;
+	if (checkMaxLength(value) == true) {
+		firstName.parentElement.removeAttribute("data-error-visible");
+	} else {
+		firstName.parentElement.setAttribute("data-error-visible", true);
+	}
+});
