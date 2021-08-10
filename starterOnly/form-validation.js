@@ -52,3 +52,11 @@ function termsOfUseIsChecked() {
 		return false;
 	}
 }
+
+//disable submit button
+function submitDisable(element) {
+	element.setAttribute("disabled", "");
+	element.style.background = "grey";
+	element.style.color = "silver";
+}
+submitDisable(submitButton);
