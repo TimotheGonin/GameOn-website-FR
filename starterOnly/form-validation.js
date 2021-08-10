@@ -1,9 +1,4 @@
-// string length checking function
-function checkMaxLength(value) {
-	return /^.{2,}$/.test(value); //return true if value.length == 2
-}
-
-//input Elements
+//DOM Elements
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
 const email = document.getElementById("email");
@@ -18,15 +13,21 @@ const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 );
 const submitButton = document.getElementById("submit-btn");
 
+// string length checking function
+function checkMaxLength(value) {
+	return /^.{2,}$/.test(value); //return true if value.length == 2
+}
+
 // country check function loop
 function countryCheck(coutryArray) {
 	for (country of coutryArray) {
 		if (country.checked == true) {
-			console.log(country.value);
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
-
 // countryCheck(locationPastEvent);
 
 //Terms of use accept checked ?
