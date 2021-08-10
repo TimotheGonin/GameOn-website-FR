@@ -47,3 +47,8 @@ function valueIsNumber(value) {
 		return true;
 	}
 }
+
+// Valid email function test
+function emailIsValid(value) {
+	return /.+\@.+\..+/.test(value); //return true if value is a valid email
+}
