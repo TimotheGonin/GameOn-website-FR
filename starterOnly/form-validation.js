@@ -15,9 +15,27 @@ const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 );
 const submitButton = document.getElementById("submit-btn");
 
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ COMMON ERROR DISPLAY FUNCTION                                                │
+// └──────────────────────────────────────────────────────────────────────────────┘
+
+// displayed if value.length < 2
+function errorDisplay(event) {
+	let value = event.target.value;
+	if (checkMinLength(value) == true) {
+		this.parentElement.removeAttribute("data-error-visible");
+	} else {
+		this.parentElement.setAttribute("data-error-visible", true);
+	}
+}
+
 // string length checking function
 function checkMinLength(value) {
-	return /^.{2,}$/.test(value); //return true if value.length == 2
+	if (/^.{2,}$/.test(value)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 // Valid email function test
@@ -64,18 +82,8 @@ function submitDisable(element) {
 submitDisable(submitButton);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ FISRTNAME - LASTNAME LENGHT CHECKING FUNCTION                                │
+// │ EVENTS                                                                       │
 // └──────────────────────────────────────────────────────────────────────────────┘
 
-// displayed if value.length < 2
-function errorTrigger(event) {
-	let value = event.target.value;
-	if (checkMinLength(value) == true) {
-		this.parentElement.removeAttribute("data-error-visible");
-	} else {
-		this.parentElement.setAttribute("data-error-visible", true);
-	}
-}
-
-firstName.addEventListener("input", errorTrigger);
-lastName.addEventListener("input", errorTrigger);
+firstName.addEventListener("input", errorDisplay);
+lastName.addEventListener("input", errorDisplay);
