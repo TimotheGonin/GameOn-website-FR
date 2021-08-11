@@ -40,7 +40,11 @@ function checkMinLength(value) {
 
 // Valid email function test
 function emailIsValid(value) {
-	return /.+\@.+\..+/.test(value); //return true if value is a valid email
+	if (/.+\@.+\..+/.test(value)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 // Value is a number function test
