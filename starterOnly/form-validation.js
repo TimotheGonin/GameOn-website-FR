@@ -29,6 +29,16 @@ function errorDisplay(event) {
 	}
 }
 
+// return attribute of element
+function showAttribute(element) {
+	let attributeNames = element.getAttributeNames();
+	for (let name of element.getAttributeNames()) {
+		let value = element.getAttribute(name);
+		console.log(name, value);
+	}
+}
+showAttribute(firstName);
+
 // string length checking function
 function checkMinLength(value) {
 	if (/^.{2,}$/.test(value)) {
