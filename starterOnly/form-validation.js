@@ -64,13 +64,18 @@ function submitDisable(element) {
 submitDisable(submitButton);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ FISRTNAME INPUT                                                              │
+// │ FISRTNAME - LASTNAME LENGHT CHECKING FUNCTION                                │
 // └──────────────────────────────────────────────────────────────────────────────┘
-firstName.addEventListener("input", function (event) {
+
+// displayed if value.length < 2
+function errorTrigger(event) {
 	let value = event.target.value;
 	if (checkMaxLength(value) == true) {
-		firstName.parentElement.removeAttribute("data-error-visible");
+		this.parentElement.removeAttribute("data-error-visible");
 	} else {
-		firstName.parentElement.setAttribute("data-error-visible", true);
+		this.parentElement.setAttribute("data-error-visible", true);
 	}
-});
+}
+
+firstName.addEventListener("input", errorTrigger);
+lastName.addEventListener("input", errorTrigger);
