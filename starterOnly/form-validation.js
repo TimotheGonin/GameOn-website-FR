@@ -16,7 +16,7 @@ const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 const submitButton = document.getElementById("submit-btn");
 
 // string length checking function
-function checkMaxLength(value) {
+function checkMinLength(value) {
 	return /^.{2,}$/.test(value); //return true if value.length == 2
 }
 
@@ -27,10 +27,10 @@ function emailIsValid(value) {
 
 // Value is a number function test
 function valueIsNumber(value) {
-	if (isNaN(value) == true) {
-		return false;
-	} else {
+	if (!isNaN(value)) {
 		return true;
+	} else {
+		return false;
 	}
 }
 
@@ -70,7 +70,7 @@ submitDisable(submitButton);
 // displayed if value.length < 2
 function errorTrigger(event) {
 	let value = event.target.value;
-	if (checkMaxLength(value) == true) {
+	if (checkMinLength(value) == true) {
 		this.parentElement.removeAttribute("data-error-visible");
 	} else {
 		this.parentElement.setAttribute("data-error-visible", true);
