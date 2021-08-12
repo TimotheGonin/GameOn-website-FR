@@ -34,10 +34,14 @@ function showAttribute(element) {
 	let attributeNames = element.getAttributeNames();
 	for (let name of element.getAttributeNames()) {
 		let value = element.getAttribute(name);
-		console.log(name, value);
+		// console.log(name, value);
+		if (name == "type") {
+			// console.log(value);
+			return value;
+		}
 	}
 }
-showAttribute(firstName);
+console.log(showAttribute(email));
 
 // string length checking function
 function checkMinLength(value) {
