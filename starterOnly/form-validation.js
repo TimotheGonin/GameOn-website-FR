@@ -43,6 +43,32 @@ function showAttribute(element) {
 }
 console.log(showAttribute(email));
 
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ //test attribute and call function                                           │
+// └──────────────────────────────────────────────────────────────────────────────┘
+function test(element) {
+	switch (showAttribute(element)) {
+		case "text":
+			checkMinLength(element);
+			break;
+
+		case "email":
+			emailIsValid(element);
+			break;
+
+		case "radio":
+			countryCheck(element);
+			break;
+
+		case "checkbox":
+			termsOfUseIsChecked(element);
+			break;
+
+		default:
+			break;
+	}
+}
+
 // string length checking function
 function checkMinLength(value) {
 	if (/^.{2,}$/.test(value)) {
