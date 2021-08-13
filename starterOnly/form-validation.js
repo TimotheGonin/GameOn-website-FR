@@ -50,9 +50,10 @@ function showAttribute(event) {
 // │ //test attribute and call function                                           │
 // └──────────────────────────────────────────────────────────────────────────────┘
 function test(element) {
-	switch (showAttribute(element)) {
+	switch (activeInput) {
 		case "text":
-			checkMinLength(element);
+			// checkMinLength(element);
+			console.log("C'est un texte");
 			break;
 
 		case "email":
@@ -129,10 +130,21 @@ function submitDisable(element) {
 submitDisable(submitButton);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ EVENTS                                                                       │
+// │ EVENT - FOCUS                                                                │
+// └──────────────────────────────────────────────────────────────────────────────┘
+
+firstName.addEventListener("focus", showAttribute);
+lastName.addEventListener("focus", showAttribute);
+email.addEventListener("focus", showAttribute);
+birthDate.addEventListener("focus", showAttribute);
+quantityOfParticipations.addEventListener("focus", showAttribute);
+locationPastEvent.addEventListener("focus", showAttribute);
+checkboxTermsOfUse.addEventListener("focus", showAttribute);
+checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ EVENTS - CLICK                                                               │
 // └──────────────────────────────────────────────────────────────────────────────┘
 
 firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
-
-firstName.addEventListener("focus", showAttribute);
