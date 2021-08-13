@@ -42,6 +42,7 @@ function showAttribute(event) {
 			// return value;
 			activeInput = value;
 			console.log(activeInput);
+			test();
 		}
 	}
 }
@@ -49,7 +50,7 @@ function showAttribute(event) {
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ //test attribute and call function                                           │
 // └──────────────────────────────────────────────────────────────────────────────┘
-function test(element) {
+function test() {
 	switch (activeInput) {
 		case "text":
 			// checkMinLength(element);
@@ -57,15 +58,26 @@ function test(element) {
 			break;
 
 		case "email":
-			emailIsValid(element);
+			// emailIsValid(element);
+			console.log("C'est un email");
+			break;
+
+		case "date":
+			console.log("C'est une date");
+			break;
+
+		case "number":
+			console.log("C'est un nombre");
 			break;
 
 		case "radio":
-			countryCheck(element);
+			// countryCheck(element);
+			console.log("C'est un radio");
 			break;
 
 		case "checkbox":
-			termsOfUseIsChecked(element);
+			// termsOfUseIsChecked(element);
+			console.log("C'est une checkbox");
 			break;
 
 		default:
@@ -138,7 +150,12 @@ lastName.addEventListener("focus", showAttribute);
 email.addEventListener("focus", showAttribute);
 birthDate.addEventListener("focus", showAttribute);
 quantityOfParticipations.addEventListener("focus", showAttribute);
-locationPastEvent.addEventListener("focus", showAttribute);
+
+//OPTIONAL
+locationPastEvent.forEach((btn) =>
+	btn.addEventListener("click", showAttribute)
+);
+
 checkboxTermsOfUse.addEventListener("focus", showAttribute);
 checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
 
