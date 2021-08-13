@@ -30,18 +30,21 @@ function errorDisplay(event) {
 }
 
 // return attribute of element
-function showAttribute(element) {
-	let attributeNames = element.getAttributeNames();
-	for (let name of element.getAttributeNames()) {
-		let value = element.getAttribute(name);
+let activeInput = ""; // variable to store the type of active input
+
+function showAttribute(event) {
+	let attributeNames = event.currentTarget.getAttributeNames();
+	for (let name of attributeNames) {
+		let value = event.currentTarget.getAttribute(name);
 		// console.log(name, value);
 		if (name == "type") {
-			// console.log(value);
-			return value;
+			console.log(value);
+			// return value;
+			activeInput = value;
+			console.log(activeInput);
 		}
 	}
 }
-console.log(showAttribute(email));
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ //test attribute and call function                                           │
@@ -131,3 +134,5 @@ submitDisable(submitButton);
 
 firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
+
+firstName.addEventListener("focus", showAttribute);
