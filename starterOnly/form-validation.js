@@ -47,6 +47,10 @@ function showAttribute(event) {
 	}
 }
 
+function resetActiveInput() {
+	activeInput = "";
+}
+
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ //test attribute and call function                                           │
 // └──────────────────────────────────────────────────────────────────────────────┘
