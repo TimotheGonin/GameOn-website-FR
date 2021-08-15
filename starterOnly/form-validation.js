@@ -16,81 +16,10 @@ const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 const submitButton = document.getElementById("submit-btn");
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ COMMON ERROR DISPLAY FUNCTION                                                │
+// │ CHECK FUNCTIONS                                                              │
 // └──────────────────────────────────────────────────────────────────────────────┘
-
-// displayed if value.length < 2
-function errorDisplay(event) {
-	let value = event.target.value;
-	if (checkMinLength(value) == true) {
-		this.parentElement.removeAttribute("data-error-visible");
-	} else {
-		this.parentElement.setAttribute("data-error-visible", true);
-	}
-}
-
-// return attribute of element
-let activeInput = ""; // variable to store the type of active input
-
-function showAttribute(event) {
-	let attributeNames = event.currentTarget.getAttributeNames();
-	for (let name of attributeNames) {
-		let value = event.currentTarget.getAttribute(name);
-		// console.log(name, value);
-		if (name == "type") {
-			console.log(value);
-			// return value;
-			activeInput = value;
-			console.log(activeInput);
-			test();
-		}
-	}
-}
-
-function resetActiveInput() {
-	activeInput = "";
-}
-
-// ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ //test attribute and call function                                           │
-// └──────────────────────────────────────────────────────────────────────────────┘
-function test() {
-	switch (activeInput) {
-		case "text":
-			// checkMinLength(element);
-			console.log("C'est un texte");
-			break;
-
-		case "email":
-			// emailIsValid(element);
-			console.log("C'est un email");
-			break;
-
-		case "date":
-			console.log("C'est une date");
-			break;
-
-		case "number":
-			console.log("C'est un nombre");
-			break;
-
-		case "radio":
-			// countryCheck(element);
-			console.log("C'est un radio");
-			break;
-
-		case "checkbox":
-			// termsOfUseIsChecked(element);
-			console.log("C'est une checkbox");
-			break;
-
-		default:
-			break;
-	}
-}
-
 // string length checking function
-function checkMinLength(value) {
+function lengthIsValid(value) {
 	if (/^.{2,}$/.test(value)) {
 		return true;
 	} else {
@@ -137,6 +66,65 @@ function termsOfUseIsChecked() {
 	}
 }
 
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ INPUT FUNCTIONS                                                              │
+// └──────────────────────────────────────────────────────────────────────────────┘
+
+let activeInput = ""; // variable to store the type of active input
+
+// return attribute of element
+function showAttribute(event) {
+	let inputType = event.currentTarget.getAttributeNames();
+	let value = event.target.value;
+	// console.log(inputType, value);
+	for (let name of inputType) {
+		let value = event.currentTarget.getAttribute(name);
+		// console.log(name, value);
+		if (name == "type") {
+			// console.log(value);
+			activeInput = value;
+			console.log(activeInput);
+			// test();
+			// return value;
+		}
+	}
+}
+
+function errorDisplay(event) {
+	let value = event.target.value;
+	switch (activeInput) {
+		//ACTION FOR INPUT TYPE TEXT
+		case "text":
+			lengthIsValid(value);
+			if (lengthIsValid(value) == true) {
+				this.parentElement.removeAttribute("data-error-visible");
+			} else {
+				this.parentElement.setAttribute("data-error-visible", true);
+			}
+			break;
+
+		//ACTION FOR INPUT TYPE MAIL
+		case "email":
+			if (emailIsValid(value) == true) {
+				this.parentElement.removeAttribute("data-error-visible");
+			} else {
+				this.parentElement.setAttribute("data-error-visible", true);
+			}
+			break;
+
+		//ACTION FOR INPUT TYPE DATE
+		case "date":
+			console.log("C'est une date");
+			break;
+
+		default:
+			break;
+	}
+}
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ BUTTON FUNCTIONS                                                             │
+// └──────────────────────────────────────────────────────────────────────────────┘
 //disable submit button
 function submitDisable(element) {
 	element.setAttribute("disabled", "");
@@ -169,3 +157,4 @@ checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
 
 firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
+email.addEventListener("input", errorDisplay);
