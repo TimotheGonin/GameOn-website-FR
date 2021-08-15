@@ -128,10 +128,15 @@ function errorDisplay(event) {
 //disable submit button
 function submitDisable(element) {
 	element.setAttribute("disabled", "");
-	element.style.background = "grey";
-	element.style.color = "silver";
+	element.classList.add("btn--disabled");
 }
 submitDisable(submitButton);
+
+function submitEnable(element) {
+	element.removeAttribute("disabled", "");
+	element.classList.remove("btn--disabled");
+}
+// submitEnable(submitButton);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENT - FOCUS                                                                │
