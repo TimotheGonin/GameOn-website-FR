@@ -117,6 +117,24 @@ function showAttribute(event) {
 	}
 }
 
+let idTextInput = "";
+function showId(event) {
+	let inputType = event.currentTarget.getAttributeNames();
+	let value = event.target.value;
+	// console.log(inputType, value);
+	for (let name of inputType) {
+		let value = event.currentTarget.getAttribute(name);
+		// console.log(name, value);
+		if (name == "id") {
+			// console.log(value);
+			idTextInput = value;
+			console.log(idTextInput);
+			// test();
+			// return value;
+		}
+	}
+}
+
 function errorDisplay(event) {
 	let value = event.target.value;
 	switch (activeInput) {
@@ -190,6 +208,8 @@ function submitEnable(element) {
 
 firstName.addEventListener("focus", showAttribute);
 lastName.addEventListener("focus", showAttribute);
+firstName.addEventListener("focus", showId);
+lastName.addEventListener("focus", showId);
 email.addEventListener("focus", showAttribute);
 birthDate.addEventListener("focus", showAttribute);
 quantityOfParticipations.addEventListener("focus", showAttribute);
