@@ -64,6 +64,14 @@ function valueIsNumber(value) {
 	}
 }
 
+//check date is not empty
+function dateIsNotEmpty(value) {
+	if (value == "") {
+		return false;
+	} else {
+		return true;
+	}
+}
 // country check function loop
 function countryCheck(coutryArray) {
 	for (country of coutryArray) {
@@ -137,7 +145,13 @@ function errorDisplay(event) {
 
 		//ACTION FOR INPUT TYPE DATE
 		case "date":
-			console.log("C'est une date");
+			if (dateIsNotEmpty(value) == true) {
+				this.parentElement.removeAttribute("data-error-visible");
+				birthDateErrorMessage.style.display = "none";
+			} else {
+				this.parentElement.removeAttribute("data-error-visible");
+				birthDateErrorMessage.style.display = "block";
+			}
 			break;
 
 		// ACTION FOR INPUT TYPE CHECKBOX
@@ -195,5 +209,6 @@ checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
 firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
 email.addEventListener("input", errorDisplay);
+birthDate.addEventListener("input", errorDisplay);
 checkboxTermsOfUse.addEventListener("click", errorDisplay);
 quantityOfParticipations.addEventListener("input", errorDisplay);
