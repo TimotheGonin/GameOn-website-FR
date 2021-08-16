@@ -14,6 +14,11 @@ const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 	"checkboxNotifiedOfUpcomingEvents"
 );
 const submitButton = document.getElementById("submit-btn");
+//ERROR MESSAGES
+const termsOfUseErrorMessage = document.getElementById(
+	"termsOfUseErrorMessage"
+);
+termsOfUseErrorMessage.style.display = "none";
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ CHECK FUNCTIONS                                                              │
@@ -85,7 +90,7 @@ function showAttribute(event) {
 			activeInput = value;
 			console.log(activeInput);
 			// test();
-			// return value;
+			return value;
 		}
 	}
 }
@@ -115,6 +120,14 @@ function errorDisplay(event) {
 		//ACTION FOR INPUT TYPE DATE
 		case "date":
 			console.log("C'est une date");
+			break;
+
+		case "checkbox":
+			if (termsOfUseIsChecked() == true) {
+				termsOfUseErrorMessage.style.display = "none";
+			} else {
+				termsOfUseErrorMessage.style.display = "block";
+			}
 			break;
 
 		default:
@@ -157,9 +170,10 @@ checkboxTermsOfUse.addEventListener("focus", showAttribute);
 checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ EVENTS - CLICK                                                               │
+// │ EVENTS - INPUT / CLICK                                                       │
 // └──────────────────────────────────────────────────────────────────────────────┘
 
 firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
 email.addEventListener("input", errorDisplay);
+checkboxTermsOfUse.addEventListener("click", errorDisplay);
