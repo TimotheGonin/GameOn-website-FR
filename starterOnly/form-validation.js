@@ -15,9 +15,23 @@ const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 );
 const submitButton = document.getElementById("submit-btn");
 //ERROR MESSAGES
+const firstNameErrorMessage = document.getElementById("firstNameErrorMessage");
+const lastNameErrorMessage = document.getElementById("lastNameErrorMessage");
+const emailErrorMessage = document.getElementById("emailErrorMessage");
+const birthDateErrorMessage = document.getElementById("birthDateErrorMessage");
+const cityOfParticipationErrorMessage = document.getElementById(
+	"cityOfParticipationErrorMessage"
+);
 const termsOfUseErrorMessage = document.getElementById(
 	"termsOfUseErrorMessage"
 );
+
+//error message hidden
+firstNameErrorMessage.style.display = "none";
+lastNameErrorMessage.style.display = "none";
+emailErrorMessage.style.display = "none";
+birthDateErrorMessage.style.display = "none";
+cityOfParticipationErrorMessage.style.display = "none";
 termsOfUseErrorMessage.style.display = "none";
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -103,8 +117,10 @@ function errorDisplay(event) {
 			lengthIsValid(value);
 			if (lengthIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
+				firstNameErrorMessage.style.display = "none";
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
+				firstNameErrorMessage.style.display = "block";
 			}
 			break;
 
@@ -112,8 +128,10 @@ function errorDisplay(event) {
 		case "email":
 			if (emailIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
+				emailErrorMessage.style.display = "none";
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
+				emailErrorMessage.style.display = "block";
 			}
 			break;
 
@@ -122,6 +140,7 @@ function errorDisplay(event) {
 			console.log("C'est une date");
 			break;
 
+		// ACTION FOR INPUT TYPE CHECKBOX
 		case "checkbox":
 			if (termsOfUseIsChecked() == true) {
 				termsOfUseErrorMessage.style.display = "none";
@@ -177,3 +196,4 @@ firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
 email.addEventListener("input", errorDisplay);
 checkboxTermsOfUse.addEventListener("click", errorDisplay);
+quantityOfParticipations.addEventListener("input", errorDisplay);
