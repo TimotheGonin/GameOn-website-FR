@@ -137,29 +137,24 @@ function showId(event) {
 
 function errorDisplay(event) {
 	let value = event.target.value;
+	let element;
 	switch (activeInput) {
 		//ACTION FOR INPUT TYPE TEXT
 		case "text":
 			if (idTextInput == "firstName") {
-				lengthIsValid(value);
-				if (lengthIsValid(value) == true) {
-					this.parentElement.removeAttribute("data-error-visible");
-					firstNameErrorMessage.style.display = "none";
-				} else {
-					this.parentElement.setAttribute("data-error-visible", true);
-					firstNameErrorMessage.style.display = "block";
-				}
+				element = firstNameErrorMessage;
 			} else if (idTextInput == "lastName") {
-				lengthIsValid(value);
-				if (lengthIsValid(value) == true) {
-					this.parentElement.removeAttribute("data-error-visible");
-					lastNameErrorMessage.style.display = "none";
-				} else {
-					this.parentElement.setAttribute("data-error-visible", true);
-					lastNameErrorMessage.style.display = "block";
-				}
+				element = lastNameErrorMessage;
 			}
 
+			lengthIsValid(value);
+			if (lengthIsValid(value) == true) {
+				this.parentElement.removeAttribute("data-error-visible");
+				element.style.display = "none";
+			} else {
+				this.parentElement.setAttribute("data-error-visible", true);
+				element.style.display = "block";
+			}
 			break;
 
 		//ACTION FOR INPUT TYPE MAIL
