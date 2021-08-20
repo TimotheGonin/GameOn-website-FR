@@ -130,6 +130,7 @@ function showId(event) {
 function errorDisplay(event) {
 	let value = event.target.value;
 	let element;
+	let inputName;
 	switch (activeInput) {
 		//ACTION FOR INPUT TYPE TEXT
 		case "text":
@@ -154,9 +155,11 @@ function errorDisplay(event) {
 			if (emailIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				emailErrorMessage.style.display = "none";
+				inputEmail = true;
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				emailErrorMessage.style.display = "block";
+				inputEmail = false;
 			}
 			break;
 
@@ -165,9 +168,11 @@ function errorDisplay(event) {
 			if (dateIsNotEmpty(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				birthDateErrorMessage.style.display = "none";
+				inputBirthDate = true;
 			} else {
 				this.parentElement.removeAttribute("data-error-visible");
 				birthDateErrorMessage.style.display = "block";
+				inputBirthDate = false;
 			}
 			break;
 
@@ -185,6 +190,13 @@ function errorDisplay(event) {
 			break;
 	}
 }
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ INPUT VALIDATION STATUS                                                      │
+// └──────────────────────────────────────────────────────────────────────────────┘
+let inputFirstName = false;
+let inputLastName = false;
+let inputEmail = false;
+let inputBirthDate = false;
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENT - FOCUS                                                                │
@@ -216,3 +228,19 @@ email.addEventListener("input", errorDisplay);
 birthDate.addEventListener("input", errorDisplay);
 checkboxTermsOfUse.addEventListener("click", errorDisplay);
 quantityOfParticipations.addEventListener("input", errorDisplay);
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ CONFIRMATION SUBMIT                                                          │
+// └──────────────────────────────────────────────────────────────────────────────┘
+const formBody = document.querySelector("form");
+const modal = document.getElementById("modal");
+
+submitButton.addEventListener("click", (e) => {
+	if (inputEmail == true && inputBirthDate == true) {
+		e.preventDefault();
+		formBody.style.display = "none";
+		const validationMessage = document.createElement("p");
+		validationMessage.innerHTML = "Merci pour votre inscription";
+		modal.appendChild(validationMessage);
+	}
+});
