@@ -103,33 +103,25 @@ let activeInput = ""; // variable to store the type of active input
 function showAttribute(event) {
 	let inputType = event.currentTarget.getAttributeNames();
 	let value = event.target.value;
-	// console.log(inputType, value);
 	for (let name of inputType) {
 		let value = event.currentTarget.getAttribute(name);
-		// console.log(name, value);
 		if (name == "type") {
-			// console.log(value);
 			activeInput = value;
-			console.log(activeInput);
-			// test();
 			return value;
 		}
 	}
 }
 
-let idTextInput = "";
+let idTextInput = ""; // variable to store the id of the input
+
+//return id of the element
 function showId(event) {
 	let inputType = event.currentTarget.getAttributeNames();
 	let value = event.target.value;
-	// console.log(inputType, value);
 	for (let name of inputType) {
 		let value = event.currentTarget.getAttribute(name);
-		// console.log(name, value);
 		if (name == "id") {
-			// console.log(value);
 			idTextInput = value;
-			console.log(idTextInput);
-			// test();
 			return value;
 		}
 	}
@@ -189,6 +181,7 @@ function errorDisplay(event) {
 			break;
 
 		default:
+			alert("Une erreur est survenue.");
 			break;
 	}
 }
