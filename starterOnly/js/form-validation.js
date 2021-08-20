@@ -130,7 +130,6 @@ function showId(event) {
 function errorDisplay(event) {
 	let value = event.target.value;
 	let element;
-	let inputName;
 	switch (activeInput) {
 		//ACTION FOR INPUT TYPE TEXT
 		case "text":
@@ -144,9 +143,19 @@ function errorDisplay(event) {
 			if (lengthIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				element.style.display = "none";
+				if (element == firstNameErrorMessage) {
+					inputFirstName = true;
+				} else if (element == lastNameErrorMessage) {
+					inputLastName = true;
+				}
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				element.style.display = "block";
+				if (element == firstNameErrorMessage) {
+					inputFirstName = false;
+				} else if (element == lastNameErrorMessage) {
+					inputLastName = false;
+				}
 			}
 			break;
 
@@ -236,7 +245,12 @@ const formBody = document.querySelector("form");
 const modal = document.getElementById("modal");
 
 submitButton.addEventListener("click", (e) => {
-	if (inputEmail == true && inputBirthDate == true) {
+	if (
+		inputFirstName == true &&
+		inputLastName == true &&
+		inputEmail == true &&
+		inputBirthDate == true
+	) {
 		e.preventDefault();
 		formBody.style.display = "none";
 		const validationMessage = document.createElement("p");
