@@ -14,26 +14,64 @@ const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 	"checkboxNotifiedOfUpcomingEvents"
 );
 const submitButton = document.getElementById("submit-btn");
+//ERROR MESSAGES
+const firstNameErrorMessage = document.getElementById("firstNameErrorMessage");
+const lastNameErrorMessage = document.getElementById("lastNameErrorMessage");
+const emailErrorMessage = document.getElementById("emailErrorMessage");
+const birthDateErrorMessage = document.getElementById("birthDateErrorMessage");
+const cityOfParticipationErrorMessage = document.getElementById(
+	"cityOfParticipationErrorMessage"
+);
+const termsOfUseErrorMessage = document.getElementById(
+	"termsOfUseErrorMessage"
+);
 
+//error message hidden
+firstNameErrorMessage.style.display = "none";
+lastNameErrorMessage.style.display = "none";
+emailErrorMessage.style.display = "none";
+birthDateErrorMessage.style.display = "none";
+cityOfParticipationErrorMessage.style.display = "none";
+termsOfUseErrorMessage.style.display = "none";
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ CHECK FUNCTIONS                                                              │
+// └──────────────────────────────────────────────────────────────────────────────┘
 // string length checking function
-function checkMaxLength(value) {
-	return /^.{2,}$/.test(value); //return true if value.length == 2
+function lengthIsValid(value) {
+	if (/^.{2,}$/.test(value)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 // Valid email function test
 function emailIsValid(value) {
-	return /.+\@.+\..+/.test(value); //return true if value is a valid email
+	if (/.+\@.+\..+/.test(value)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 // Value is a number function test
 function valueIsNumber(value) {
-	if (isNaN(value) == true) {
+	if (!isNaN(value)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+//check date is not empty
+function dateIsNotEmpty(value) {
+	if (value == "") {
 		return false;
 	} else {
 		return true;
 	}
 }
-
 // country check function loop
 function countryCheck(coutryArray) {
 	for (country of coutryArray) {
@@ -55,10 +93,126 @@ function termsOfUseIsChecked() {
 	}
 }
 
-//disable submit button
-function submitDisable(element) {
-	element.setAttribute("disabled", "");
-	element.style.background = "grey";
-	element.style.color = "silver";
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ INPUT FUNCTIONS                                                              │
+// └──────────────────────────────────────────────────────────────────────────────┘
+
+let activeInput = ""; // variable to store the type of active input
+
+// return attribute of element
+function showAttribute(event) {
+	let inputType = event.currentTarget.getAttributeNames();
+	let value = event.target.value;
+	for (let name of inputType) {
+		let value = event.currentTarget.getAttribute(name);
+		if (name == "type") {
+			activeInput = value;
+			return value;
+		}
+	}
 }
-submitDisable(submitButton);
+
+let idTextInput = ""; // variable to store the id of the input
+
+//return id of the element
+function showId(event) {
+	let inputType = event.currentTarget.getAttributeNames();
+	let value = event.target.value;
+	for (let name of inputType) {
+		let value = event.currentTarget.getAttribute(name);
+		if (name == "id") {
+			idTextInput = value;
+			return value;
+		}
+	}
+}
+
+function errorDisplay(event) {
+	let value = event.target.value;
+	let element;
+	switch (activeInput) {
+		//ACTION FOR INPUT TYPE TEXT
+		case "text":
+			if (idTextInput == "firstName") {
+				element = firstNameErrorMessage;
+			} else if (idTextInput == "lastName") {
+				element = lastNameErrorMessage;
+			}
+
+			lengthIsValid(value);
+			if (lengthIsValid(value) == true) {
+				this.parentElement.removeAttribute("data-error-visible");
+				element.style.display = "none";
+			} else {
+				this.parentElement.setAttribute("data-error-visible", true);
+				element.style.display = "block";
+			}
+			break;
+
+		//ACTION FOR INPUT TYPE MAIL
+		case "email":
+			if (emailIsValid(value) == true) {
+				this.parentElement.removeAttribute("data-error-visible");
+				emailErrorMessage.style.display = "none";
+			} else {
+				this.parentElement.setAttribute("data-error-visible", true);
+				emailErrorMessage.style.display = "block";
+			}
+			break;
+
+		//ACTION FOR INPUT TYPE DATE
+		case "date":
+			if (dateIsNotEmpty(value) == true) {
+				this.parentElement.removeAttribute("data-error-visible");
+				birthDateErrorMessage.style.display = "none";
+			} else {
+				this.parentElement.removeAttribute("data-error-visible");
+				birthDateErrorMessage.style.display = "block";
+			}
+			break;
+
+		// ACTION FOR INPUT TYPE CHECKBOX
+		case "checkbox":
+			if (termsOfUseIsChecked() == true) {
+				termsOfUseErrorMessage.style.display = "none";
+			} else {
+				termsOfUseErrorMessage.style.display = "block";
+			}
+			break;
+
+		default:
+			alert("Une erreur est survenue.");
+			break;
+	}
+}
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ EVENT - FOCUS                                                                │
+// └──────────────────────────────────────────────────────────────────────────────┘
+
+firstName.addEventListener("focus", showAttribute);
+lastName.addEventListener("focus", showAttribute);
+firstName.addEventListener("focus", showId);
+lastName.addEventListener("focus", showId);
+email.addEventListener("focus", showAttribute);
+birthDate.addEventListener("focus", showAttribute);
+quantityOfParticipations.addEventListener("focus", showAttribute);
+
+//OPTIONAL
+locationPastEvent.forEach((btn) =>
+	btn.addEventListener("click", showAttribute)
+);
+
+checkboxTermsOfUse.addEventListener("focus", showAttribute);
+checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ EVENTS - INPUT / CLICK                                                       │
+// └──────────────────────────────────────────────────────────────────────────────┘
+
+firstName.addEventListener("input", errorDisplay);
+lastName.addEventListener("input", errorDisplay);
+email.addEventListener("input", errorDisplay);
+birthDate.addEventListener("input", errorDisplay);
+checkboxTermsOfUse.addEventListener("click", errorDisplay);
+quantityOfParticipations.addEventListener("input", errorDisplay);
