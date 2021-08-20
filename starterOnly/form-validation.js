@@ -187,22 +187,6 @@ function errorDisplay(event) {
 }
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ BUTTON FUNCTIONS                                                             │
-// └──────────────────────────────────────────────────────────────────────────────┘
-//disable submit button
-function submitDisable(element) {
-	element.setAttribute("disabled", "");
-	element.classList.add("btn--disabled");
-}
-submitDisable(submitButton);
-
-function submitEnable(element) {
-	element.removeAttribute("disabled", "");
-	element.classList.remove("btn--disabled");
-}
-// submitEnable(submitButton);
-
-// ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENT - FOCUS                                                                │
 // └──────────────────────────────────────────────────────────────────────────────┘
 
