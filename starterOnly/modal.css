@@ -188,6 +188,10 @@ main {
 .modal-body {
 	padding: 15px 8%;
 	margin: 15px auto;
+	min-height: 710px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 label {
@@ -527,6 +531,9 @@ footer {
 		margin-top: 50px;
 		text-align: center;
 	}
+}
+.validationMessage {
+	text-align: center;
 }
 
 @keyframes modalopen {
