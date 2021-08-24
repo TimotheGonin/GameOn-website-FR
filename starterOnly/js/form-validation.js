@@ -179,7 +179,7 @@ function errorDisplay(event) {
 				birthDateErrorMessage.style.display = "none";
 				inputBirthDate = true;
 			} else {
-				this.parentElement.removeAttribute("data-error-visible");
+				this.parentElement.setAttribute("data-error-visible", true);
 				birthDateErrorMessage.style.display = "block";
 				inputBirthDate = false;
 			}
