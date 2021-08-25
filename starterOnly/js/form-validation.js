@@ -214,6 +214,7 @@ function errorDisplay(event) {
 		//ACTION FOR INPUT TYPE NUMBER
 		case "number":
 			if (valueIsNumber(value) == true) {
+				radioDisable();
 				this.parentElement.removeAttribute("data-error-visible");
 				participartionErrorMessage.style.display = "none";
 				inputNumber = true;
