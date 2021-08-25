@@ -57,7 +57,7 @@ function emailIsValid(value) {
 
 // Value is a number function test
 function valueIsNumber(value) {
-	if (!isNaN(value)) {
+	if (/[0-9]/.test(value)) {
 		return true;
 	} else {
 		return false;
@@ -182,6 +182,15 @@ function errorDisplay(event) {
 				this.parentElement.setAttribute("data-error-visible", true);
 				birthDateErrorMessage.style.display = "block";
 				inputBirthDate = false;
+			}
+			break;
+
+		//ACTION FOR INPUT TYPE NUMBER
+		case "number":
+			if (valueIsNumber(value) == true) {
+				this.parentElement.removeAttribute("data-error-visible");
+			} else {
+				this.parentElement.setAttribute("data-error-visible", true);
 			}
 			break;
 
