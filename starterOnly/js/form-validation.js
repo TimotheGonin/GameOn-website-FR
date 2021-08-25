@@ -219,9 +219,11 @@ function errorDisplay(event) {
 				inputNumber = true;
 				if (quantityOfParticipations.value > 0) {
 					cityOfParticipationErrorMessage.style.display = "block";
+					inputRadio = false;
 					radioEnable();
 				} else {
 					cityOfParticipationErrorMessage.style.display = "none";
+					inputRadio = true;
 					radioDisable();
 				}
 			} else {
@@ -235,8 +237,10 @@ function errorDisplay(event) {
 		case "radio":
 			if (countryCheck(locationPastEvent)) {
 				cityOfParticipationErrorMessage.style.display = "none";
+				inputRadio = true;
 			} else {
 				cityOfParticipationErrorMessage.style.display = "block";
+				inputRadio = false;
 			}
 			break;
 
@@ -264,6 +268,7 @@ let inputLastName = false;
 let inputEmail = false;
 let inputBirthDate = false;
 let inputNumber = false;
+let inputRadio = true;
 let inputCheckBox = true;
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -311,6 +316,7 @@ submitButton.addEventListener("click", (e) => {
 		inputEmail == true &&
 		inputBirthDate == true &&
 		inputNumber == true &&
+		inputRadio == true &&
 		inputCheckBox == true
 	) {
 		e.preventDefault();
@@ -318,5 +324,15 @@ submitButton.addEventListener("click", (e) => {
 		const validationMessage = document.createElement("p");
 		validationMessage.innerHTML = "Merci pour votre inscription";
 		modal.appendChild(validationMessage);
+	} else if (
+		!inputFirstName ||
+		!inputLastName ||
+		!inputEmail ||
+		!inputBirthDate ||
+		!inputNumber ||
+		!inputRadio ||
+		!inputCheckBox
+	) {
+		e.preventDefault();
 	}
 });
