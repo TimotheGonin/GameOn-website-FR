@@ -265,12 +265,12 @@ birthDate.addEventListener("focus", showAttribute);
 quantityOfParticipations.addEventListener("focus", showAttribute);
 
 //OPTIONAL
-locationPastEvent.forEach((btn) =>
-	btn.addEventListener("click", showAttribute)
-);
+// locationPastEvent.forEach((btn) =>
+// 	btn.addEventListener("click", showAttribute)
+// );
 
-checkboxTermsOfUse.addEventListener("focus", showAttribute);
-checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
+checkboxTermsOfUse.addEventListener("click", showAttribute);
+// checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENTS - INPUT / CLICK                                                       │
