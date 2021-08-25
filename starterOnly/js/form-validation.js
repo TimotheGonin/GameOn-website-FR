@@ -45,6 +45,7 @@ termsOfUseErrorMessage.style.display = "none";
 function radioDisable() {
 	for (let radio of locationPastEvent) {
 		radio.disabled = true;
+		radio.checked = false;
 	}
 }
 radioDisable();
