@@ -120,8 +120,10 @@
               </div>
               <div
                 class="formData">
-                <label for="quantityOfParticipations">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantityOfParticipations" name="user_quantityOfParticipations" min="0" max="99">
+                <label for="quantityOfParticipations">À combien de tournois GameOn avez-vous déjà participé ?
+                  <p class="error-message" id="participartionErrorMessage">Vous devez enter un chiffre.</p>
+                </label><br>
+                <input type="number" class="text-control" id="quantityOfParticipations" name="user_quantityOfParticipations" min="0" max="99" required>
               </div>
               <p class="text-label">Quelles villes ?</p>
               <p class="error-message" id="cityOfParticipationErrorMessage">Vous devez choisir une option.</p>

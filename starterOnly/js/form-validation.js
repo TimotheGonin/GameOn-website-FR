@@ -18,6 +18,9 @@ const submitButton = document.getElementById("submit-btn");
 const firstNameErrorMessage = document.getElementById("firstNameErrorMessage");
 const lastNameErrorMessage = document.getElementById("lastNameErrorMessage");
 const emailErrorMessage = document.getElementById("emailErrorMessage");
+const participartionErrorMessage = document.getElementById(
+	"participartionErrorMessage"
+);
 const birthDateErrorMessage = document.getElementById("birthDateErrorMessage");
 const cityOfParticipationErrorMessage = document.getElementById(
 	"cityOfParticipationErrorMessage"
@@ -30,6 +33,7 @@ const termsOfUseErrorMessage = document.getElementById(
 firstNameErrorMessage.style.display = "none";
 lastNameErrorMessage.style.display = "none";
 emailErrorMessage.style.display = "none";
+participartionErrorMessage.style.display = "none";
 birthDateErrorMessage.style.display = "none";
 cityOfParticipationErrorMessage.style.display = "none";
 termsOfUseErrorMessage.style.display = "none";
@@ -189,8 +193,12 @@ function errorDisplay(event) {
 		case "number":
 			if (valueIsNumber(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
+				participartionErrorMessage.style.display = "none";
+				inputNumber = true;
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
+				participartionErrorMessage.style.display = "block";
+				inputNumber = false;
 			}
 			break;
 
@@ -214,6 +222,7 @@ function errorDisplay(event) {
 let inputFirstName = false;
 let inputLastName = false;
 let inputEmail = false;
+let inputNumber = false;
 let inputBirthDate = false;
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -258,7 +267,8 @@ submitButton.addEventListener("click", (e) => {
 		inputFirstName == true &&
 		inputLastName == true &&
 		inputEmail == true &&
-		inputBirthDate == true
+		inputBirthDate == true &&
+		inputNumber == true
 	) {
 		e.preventDefault();
 		formBody.style.display = "none";
