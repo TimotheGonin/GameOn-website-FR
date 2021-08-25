@@ -8,16 +8,20 @@ const birthDate = document.getElementById("birthDate");
 const quantityOfParticipations = document.getElementById(
 	"quantityOfParticipations"
 );
-const locationPastEvent = document.querySelectorAll(".checkbox-input");
+const locationPastEvent = document.querySelectorAll("input[type=radio]");
 const checkboxTermsOfUse = document.getElementById("checkboxTermsOfUse");
 const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 	"checkboxNotifiedOfUpcomingEvents"
 );
 const submitButton = document.getElementById("submit-btn");
+
 //ERROR MESSAGES
 const firstNameErrorMessage = document.getElementById("firstNameErrorMessage");
 const lastNameErrorMessage = document.getElementById("lastNameErrorMessage");
 const emailErrorMessage = document.getElementById("emailErrorMessage");
+const participartionErrorMessage = document.getElementById(
+	"participartionErrorMessage"
+);
 const birthDateErrorMessage = document.getElementById("birthDateErrorMessage");
 const cityOfParticipationErrorMessage = document.getElementById(
 	"cityOfParticipationErrorMessage"
@@ -25,15 +29,33 @@ const cityOfParticipationErrorMessage = document.getElementById(
 const termsOfUseErrorMessage = document.getElementById(
 	"termsOfUseErrorMessage"
 );
-
-//error message hidden
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ HIDE ERROR MESSAGE                                                           │
+// └──────────────────────────────────────────────────────────────────────────────┘
 firstNameErrorMessage.style.display = "none";
 lastNameErrorMessage.style.display = "none";
 emailErrorMessage.style.display = "none";
+participartionErrorMessage.style.display = "none";
 birthDateErrorMessage.style.display = "none";
 cityOfParticipationErrorMessage.style.display = "none";
 termsOfUseErrorMessage.style.display = "none";
 
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ DISABLE/ENABLE RADIO INPUTS                                                  │
+// └──────────────────────────────────────────────────────────────────────────────┘
+function radioDisable() {
+	for (let radio of locationPastEvent) {
+		radio.disabled = true;
+		radio.checked = false;
+	}
+}
+radioDisable();
+
+function radioEnable() {
+	for (let radio of locationPastEvent) {
+		radio.disabled = false;
+	}
+}
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ CHECK FUNCTIONS                                                              │
 // └──────────────────────────────────────────────────────────────────────────────┘
@@ -57,7 +79,7 @@ function emailIsValid(value) {
 
 // Value is a number function test
 function valueIsNumber(value) {
-	if (!isNaN(value)) {
+	if (/[0-9]/.test(value)) {
 		return true;
 	} else {
 		return false;
@@ -74,12 +96,16 @@ function dateIsNotEmpty(value) {
 }
 // country check function loop
 function countryCheck(coutryArray) {
-	for (country of coutryArray) {
-		if (country.checked == true) {
-			return true;
-		} else {
-			return false;
+	let counter;
+	for (let country of coutryArray) {
+		if (country.checked) {
+			counter++;
 		}
+	}
+	if (counter !== 0) {
+		return true;
+	} else {
+		return false;
 	}
 }
 // countryCheck(locationPastEvent);
@@ -185,12 +211,47 @@ function errorDisplay(event) {
 			}
 			break;
 
+		//ACTION FOR INPUT TYPE NUMBER
+		case "number":
+			if (valueIsNumber(value) == true) {
+				this.parentElement.removeAttribute("data-error-visible");
+				participartionErrorMessage.style.display = "none";
+				inputNumber = true;
+				if (quantityOfParticipations.value > 0) {
+					cityOfParticipationErrorMessage.style.display = "block";
+					inputRadio = false;
+					radioEnable();
+				} else {
+					cityOfParticipationErrorMessage.style.display = "none";
+					inputRadio = true;
+					radioDisable();
+				}
+			} else {
+				this.parentElement.setAttribute("data-error-visible", true);
+				participartionErrorMessage.style.display = "block";
+				inputNumber = false;
+			}
+			break;
+
+		//ACTION FOR INPUT TYPE RADIO TYPE
+		case "radio":
+			if (countryCheck(locationPastEvent)) {
+				cityOfParticipationErrorMessage.style.display = "none";
+				inputRadio = true;
+			} else {
+				cityOfParticipationErrorMessage.style.display = "block";
+				inputRadio = false;
+			}
+			break;
+
 		// ACTION FOR INPUT TYPE CHECKBOX
 		case "checkbox":
 			if (termsOfUseIsChecked() == true) {
 				termsOfUseErrorMessage.style.display = "none";
+				inputCheckBox = true;
 			} else {
 				termsOfUseErrorMessage.style.display = "block";
+				inputCheckBox = false;
 			}
 			break;
 
@@ -206,6 +267,9 @@ let inputFirstName = false;
 let inputLastName = false;
 let inputEmail = false;
 let inputBirthDate = false;
+let inputNumber = false;
+let inputRadio = true;
+let inputCheckBox = true;
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENT - FOCUS                                                                │
@@ -224,8 +288,8 @@ locationPastEvent.forEach((btn) =>
 	btn.addEventListener("click", showAttribute)
 );
 
-checkboxTermsOfUse.addEventListener("focus", showAttribute);
-checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
+checkboxTermsOfUse.addEventListener("click", showAttribute);
+// checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENTS - INPUT / CLICK                                                       │
@@ -235,8 +299,9 @@ firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
 email.addEventListener("input", errorDisplay);
 birthDate.addEventListener("input", errorDisplay);
-checkboxTermsOfUse.addEventListener("click", errorDisplay);
 quantityOfParticipations.addEventListener("input", errorDisplay);
+locationPastEvent.forEach((btn) => btn.addEventListener("click", errorDisplay));
+checkboxTermsOfUse.addEventListener("click", errorDisplay);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ CONFIRMATION SUBMIT                                                          │
@@ -249,12 +314,25 @@ submitButton.addEventListener("click", (e) => {
 		inputFirstName == true &&
 		inputLastName == true &&
 		inputEmail == true &&
-		inputBirthDate == true
+		inputBirthDate == true &&
+		inputNumber == true &&
+		inputRadio == true &&
+		inputCheckBox == true
 	) {
 		e.preventDefault();
 		formBody.style.display = "none";
 		const validationMessage = document.createElement("p");
 		validationMessage.innerHTML = "Merci pour votre inscription";
 		modal.appendChild(validationMessage);
+	} else if (
+		!inputFirstName ||
+		!inputLastName ||
+		!inputEmail ||
+		!inputBirthDate ||
+		!inputNumber ||
+		!inputRadio ||
+		!inputCheckBox
+	) {
+		e.preventDefault();
 	}
 });
