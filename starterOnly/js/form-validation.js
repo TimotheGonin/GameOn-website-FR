@@ -14,6 +14,7 @@ const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 	"checkboxNotifiedOfUpcomingEvents"
 );
 const submitButton = document.getElementById("submit-btn");
+
 //ERROR MESSAGES
 const firstNameErrorMessage = document.getElementById("firstNameErrorMessage");
 const lastNameErrorMessage = document.getElementById("lastNameErrorMessage");
@@ -95,12 +96,16 @@ function dateIsNotEmpty(value) {
 }
 // country check function loop
 function countryCheck(coutryArray) {
+	let counter;
 	for (let country of coutryArray) {
 		if (country.checked) {
-			return true;
-		} else {
-			return false;
+			counter++;
 		}
+	}
+	if (counter !== 0) {
+		return true;
+	} else {
+		return false;
 	}
 }
 // countryCheck(locationPastEvent);
@@ -225,15 +230,16 @@ function errorDisplay(event) {
 				inputNumber = false;
 			}
 			break;
+
 		//ACTION FOR INPUT TYPE RADIO TYPE
 		case "radio":
-			console.log("coucou");
-			if (countryCheck(locationPastEvent) == true) {
+			if (countryCheck(locationPastEvent)) {
 				cityOfParticipationErrorMessage.style.display = "none";
 			} else {
 				cityOfParticipationErrorMessage.style.display = "block";
 			}
 			break;
+
 		// ACTION FOR INPUT TYPE CHECKBOX
 		case "checkbox":
 			if (termsOfUseIsChecked() == true) {
