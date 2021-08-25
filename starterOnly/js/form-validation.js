@@ -206,8 +206,10 @@ function errorDisplay(event) {
 		case "checkbox":
 			if (termsOfUseIsChecked() == true) {
 				termsOfUseErrorMessage.style.display = "none";
+				inputCheckBox = true;
 			} else {
 				termsOfUseErrorMessage.style.display = "block";
+				inputCheckBox = false;
 			}
 			break;
 
@@ -222,8 +224,9 @@ function errorDisplay(event) {
 let inputFirstName = false;
 let inputLastName = false;
 let inputEmail = false;
-let inputNumber = false;
 let inputBirthDate = false;
+let inputNumber = false;
+let inputCheckBox = true;
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENT - FOCUS                                                                │
@@ -268,7 +271,8 @@ submitButton.addEventListener("click", (e) => {
 		inputLastName == true &&
 		inputEmail == true &&
 		inputBirthDate == true &&
-		inputNumber == true
+		inputNumber == true &&
+		inputCheckBox == true
 	) {
 		e.preventDefault();
 		formBody.style.display = "none";
