@@ -8,7 +8,7 @@ const birthDate = document.getElementById("birthDate");
 const quantityOfParticipations = document.getElementById(
 	"quantityOfParticipations"
 );
-const locationPastEvent = document.querySelectorAll(".checkbox-input");
+const locationPastEvent = document.querySelectorAll("input[type=radio]");
 const checkboxTermsOfUse = document.getElementById("checkboxTermsOfUse");
 const checkboxNotifiedOfUpcomingEvents = document.getElementById(
 	"checkboxNotifiedOfUpcomingEvents"
@@ -28,8 +28,9 @@ const cityOfParticipationErrorMessage = document.getElementById(
 const termsOfUseErrorMessage = document.getElementById(
 	"termsOfUseErrorMessage"
 );
-
-//error message hidden
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ HIDE ERROR MESSAGE                                                           │
+// └──────────────────────────────────────────────────────────────────────────────┘
 firstNameErrorMessage.style.display = "none";
 lastNameErrorMessage.style.display = "none";
 emailErrorMessage.style.display = "none";
@@ -38,6 +39,21 @@ birthDateErrorMessage.style.display = "none";
 cityOfParticipationErrorMessage.style.display = "none";
 termsOfUseErrorMessage.style.display = "none";
 
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ DISABLE/ENABLE RADIO INPUTS                                                  │
+// └──────────────────────────────────────────────────────────────────────────────┘
+function radioDidable() {
+	for (let radio of locationPastEvent) {
+		radio.disabled = true;
+	}
+}
+radioDidable();
+
+function radioEnable() {
+	for (let radio of locationPastEvent) {
+		radio.disabled = false;
+	}
+}
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ CHECK FUNCTIONS                                                              │
 // └──────────────────────────────────────────────────────────────────────────────┘
@@ -195,6 +211,11 @@ function errorDisplay(event) {
 				this.parentElement.removeAttribute("data-error-visible");
 				participartionErrorMessage.style.display = "none";
 				inputNumber = true;
+				if (quantityOfParticipations.value > 0) {
+					cityOfParticipationErrorMessage.style.display = "block";
+				} else {
+					cityOfParticipationErrorMessage.style.display = "none";
+				}
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				participartionErrorMessage.style.display = "block";
