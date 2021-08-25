@@ -95,8 +95,8 @@ function dateIsNotEmpty(value) {
 }
 // country check function loop
 function countryCheck(coutryArray) {
-	for (country of coutryArray) {
-		if (country.checked == true) {
+	for (let country of coutryArray) {
+		if (country.checked) {
 			return true;
 		} else {
 			return false;
@@ -225,7 +225,15 @@ function errorDisplay(event) {
 				inputNumber = false;
 			}
 			break;
-
+		//ACTION FOR INPUT TYPE RADIO TYPE
+		case "radio":
+			console.log("coucou");
+			if (countryCheck(locationPastEvent) == true) {
+				cityOfParticipationErrorMessage.style.display = "none";
+			} else {
+				cityOfParticipationErrorMessage.style.display = "block";
+			}
+			break;
 		// ACTION FOR INPUT TYPE CHECKBOX
 		case "checkbox":
 			if (termsOfUseIsChecked() == true) {
@@ -265,9 +273,9 @@ birthDate.addEventListener("focus", showAttribute);
 quantityOfParticipations.addEventListener("focus", showAttribute);
 
 //OPTIONAL
-// locationPastEvent.forEach((btn) =>
-// 	btn.addEventListener("click", showAttribute)
-// );
+locationPastEvent.forEach((btn) =>
+	btn.addEventListener("click", showAttribute)
+);
 
 checkboxTermsOfUse.addEventListener("click", showAttribute);
 // checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
@@ -280,8 +288,9 @@ firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
 email.addEventListener("input", errorDisplay);
 birthDate.addEventListener("input", errorDisplay);
-checkboxTermsOfUse.addEventListener("click", errorDisplay);
 quantityOfParticipations.addEventListener("input", errorDisplay);
+locationPastEvent.forEach((btn) => btn.addEventListener("click", errorDisplay));
+checkboxTermsOfUse.addEventListener("click", errorDisplay);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ CONFIRMATION SUBMIT                                                          │
