@@ -42,12 +42,12 @@ termsOfUseErrorMessage.style.display = "none";
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ DISABLE/ENABLE RADIO INPUTS                                                  │
 // └──────────────────────────────────────────────────────────────────────────────┘
-function radioDidable() {
+function radioDisable() {
 	for (let radio of locationPastEvent) {
 		radio.disabled = true;
 	}
 }
-radioDidable();
+radioDisable();
 
 function radioEnable() {
 	for (let radio of locationPastEvent) {
@@ -213,8 +213,10 @@ function errorDisplay(event) {
 				inputNumber = true;
 				if (quantityOfParticipations.value > 0) {
 					cityOfParticipationErrorMessage.style.display = "block";
+					radioEnable();
 				} else {
 					cityOfParticipationErrorMessage.style.display = "none";
+					radioDisable();
 				}
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
