@@ -464,7 +464,8 @@ footer {
 /* ┌──────────────────────────────────────────────────────────────────────────────┐
 │ MEDIA QUERIES                                                                │
 └──────────────────────────────────────────────────────────────────────────────┘ */
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 1044px) {
 	.hero-section {
 		display: block;
 		box-shadow: unset;
@@ -481,7 +482,7 @@ footer {
 		display: none;
 	}
 	.hero-headline {
-		font-size: 4.5rem;
+		font-size: 4rem;
 		white-space: normal;
 	}
 	.hero-text {
@@ -501,9 +502,6 @@ footer {
 		margin-top: 50px;
 		text-align: center;
 	}
-}
-
-@media screen and (max-width: 768px) {
 }
 
 @media screen and (max-width: 768px) {
