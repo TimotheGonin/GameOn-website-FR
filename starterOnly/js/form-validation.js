@@ -10,9 +10,6 @@ const quantityOfParticipations = document.getElementById(
 );
 const locationPastEvent = document.querySelectorAll("input[type=radio]");
 const checkboxTermsOfUse = document.getElementById("checkboxTermsOfUse");
-const checkboxNotifiedOfUpcomingEvents = document.getElementById(
-	"checkboxNotifiedOfUpcomingEvents"
-);
 const submitButton = document.getElementById("submit-btn");
 
 //ERROR MESSAGES
@@ -130,7 +127,7 @@ function showAttribute(event) {
 	let inputType = event.currentTarget.getAttributeNames();
 	let value = event.target.value;
 	for (let name of inputType) {
-		let value = event.currentTarget.getAttribute(name);
+		value = event.currentTarget.getAttribute(name);
 		if (name == "type") {
 			activeInput = value;
 			return value;
@@ -145,7 +142,7 @@ function showId(event) {
 	let inputType = event.currentTarget.getAttributeNames();
 	let value = event.target.value;
 	for (let name of inputType) {
-		let value = event.currentTarget.getAttribute(name);
+		value = event.currentTarget.getAttribute(name);
 		if (name == "id") {
 			idTextInput = value;
 			return value;
