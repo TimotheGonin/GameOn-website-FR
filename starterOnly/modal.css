@@ -68,43 +68,6 @@ img {
 	display: none;
 }
 
-@media screen and (max-width: 768px) {
-	.topnav a {
-		display: none;
-	}
-	.topnav a.icon {
-		float: right;
-		display: block;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	.topnav.responsive {
-		position: relative;
-	}
-	.topnav.responsive .icon {
-		position: absolute;
-		right: 0;
-		top: 0;
-	}
-	.topnav.responsive a {
-		float: none;
-		display: block;
-		text-align: left;
-	}
-}
-
-@media screen and (max-width: 540px) {
-	.topnav a {
-		display: none;
-	}
-	.topnav a.icon {
-		float: right;
-		display: block;
-		margin-top: -15px;
-	}
-}
-
 main {
 	font-size: 130%;
 	font-weight: bolder;
@@ -236,6 +199,9 @@ input {
 .error-message {
 	color: red;
 	font-size: 12px;
+}
+.validationMessage {
+	text-align: center;
 }
 /* 
 input[data-error]::after {
@@ -421,7 +387,7 @@ input[data-error]::after {
 	font-size: 16px;
 }
 .hero-section {
-	min-height: 93vh;
+	min-height: 75vh;
 	border-radius: 10px;
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
@@ -494,7 +460,12 @@ footer {
 	padding-right: 2vw;
 	margin: 0 20px;
 }
-@media screen and (max-width: 800px) {
+
+/* ┌──────────────────────────────────────────────────────────────────────────────┐
+│ MEDIA QUERIES                                                                │
+└──────────────────────────────────────────────────────────────────────────────┘ */
+
+@media screen and (max-width: 1044px) {
 	.hero-section {
 		display: block;
 		box-shadow: unset;
@@ -511,7 +482,7 @@ footer {
 		display: none;
 	}
 	.hero-headline {
-		font-size: 4.5rem;
+		font-size: 4rem;
 		white-space: normal;
 	}
 	.hero-text {
@@ -532,8 +503,49 @@ footer {
 		text-align: center;
 	}
 }
-.validationMessage {
-	text-align: center;
+
+@media screen and (max-width: 768px) {
+	.hero-headline {
+		font-size: 3.7rem;
+	}
+	.topnav a {
+		display: none;
+	}
+	.topnav a.icon {
+		float: right;
+		display: block;
+	}
+	.topnav.responsive {
+		position: relative;
+	}
+	.topnav.responsive .icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.topnav.responsive a {
+		float: none;
+		display: block;
+		text-align: left;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	.hero-headline {
+		font-size: 2.5rem;
+		white-space: normal;
+	}
+	.hero-text {
+		font-size: 1.2rem;
+	}
+	.topnav a {
+		display: none;
+	}
+	.topnav a.icon {
+		float: right;
+		display: block;
+		margin-top: -15px;
+	}
 }
 
 @keyframes modalopen {
