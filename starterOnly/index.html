@@ -56,50 +56,49 @@
 				<div class="modal-body" id="modal">
 					<form name="reserve" action="index.html" method="get" onsubmit="return validate();">
 						<div class="formData">
-							<label for="firstName">Prénom
-								<span class="error-message" id="firstNameErrorMessage">
-									Veuillez entrer 2 caractères ou plus.
-								</span> </label><br />
+							<label for="firstName">Prénom</label><br />
 							<input class="text-control" type="text" id="firstName" name="user_firstName"
 								required /><br />
-						</div>
-						<div class="formData">
-							<label for="lastName">Nom
-								<span class="error-message" id="lastNameErrorMessage">
+								<span class="error-message" id="firstNameErrorMessage">
 									Veuillez entrer 2 caractères ou plus.
-								</span> </label><br />
+								</span> 
+						</div>
+						<div class="formData">
+							<label for="lastName">Nom</label><br />
 							<input class="text-control" type="text" id="lastName" name="user_lastName" required /><br />
+							<span class="error-message" id="lastNameErrorMessage">
+								Veuillez entrer 2 caractères ou plus.
+							</span> 
 						</div>
 						<div class="formData">
-							<label for="email">E-mail
-								<span class="error-message" id="emailErrorMessage">
-									Veuillez entrer une adresse email
-									valide.
-								</span> </label><br />
+							<label for="email">E-mail</label><br />
 							<input class="text-control" type="email" id="email" name="user_email" required /><br />
+							<span class="error-message" id="emailErrorMessage">
+								Veuillez entrer une adresse email valide.
+							</span> 
 						</div>
 						<div class="formData">
-							<label for="birthDate">Date de naissance
-								<span class="error-message" id="birthDateErrorMessage">
-									Vous devez entrer votre date de
-									naissance.
-								</span> </label><br />
-							<input class="text-control" type="date" id="birthDate" name="user_birthDate"
-								required /><br />
+							<label for="birthDate">Date de naissance</label><br />
+							<input class="text-control" type="date" id="birthDate" name="user_birthDate" required /><br />
+							<span class="error-message" id="birthDateErrorMessage">
+								Vous devez entrer votre date de
+								naissance.
+							</span> 
 						</div>
 						<div class="formData">
 							<label for="quantityOfParticipations">À combien de tournois GameOn avez-vous déjà
 								participé ?
-								<span class="error-message" id="participartionErrorMessage">
-									Vous devez enter un chiffre.
-								</span> </label><br />
+							</label><br />
 							<input type="number" class="text-control" id="quantityOfParticipations"
 								name="user_quantityOfParticipations" min="0" max="99" required />
+							<span class="error-message" id="participartionErrorMessage">
+								Vous devez enter un chiffre.
+							</span> 
 						</div>
 						<p class="text-label">Quelles villes ?</p>
-						<p class="error-message" id="cityOfParticipationErrorMessage">
+						<span class="error-message" id="cityOfParticipationErrorMessage">
 							Vous devez choisir une option.
-						</p>
+						</span>
 						<div class="formData">
 							<input class="checkbox-input" type="radio" id="locationNewYork" name="user_location"
 								value="New York" />
