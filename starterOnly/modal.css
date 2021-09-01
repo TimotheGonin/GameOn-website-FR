@@ -474,6 +474,7 @@ footer {
 		background: #fff;
 		color: #000;
 		padding: 20px;
+		min-width: unset;
 	}
 	.hero-content::after {
 		content: unset;
@@ -506,7 +507,7 @@ footer {
 
 @media screen and (max-width: 768px) {
 	.hero-headline {
-		font-size: 3.7rem;
+		font-size: 3rem;
 	}
 	.topnav a {
 		display: none;
