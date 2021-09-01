@@ -215,9 +215,10 @@ function errorDisplay(event) {
 				this.parentElement.removeAttribute("data-error-visible");
 				participartionErrorMessage.style.display = "none";
 				inputNumber = true;
+				inputRadio = false;
 				if (quantityOfParticipations.value > 0) {
 					cityOfParticipationErrorMessage.style.display = "block";
-					inputRadio = false;
+					// inputRadio = false;
 					radioEnable();
 				} else {
 					cityOfParticipationErrorMessage.style.display = "none";
@@ -322,15 +323,5 @@ submitButton.addEventListener("click", (e) => {
 		const validationMessage = document.createElement("p");
 		validationMessage.innerHTML = "Merci pour votre inscription";
 		modal.appendChild(validationMessage);
-	} else if (
-		!inputFirstName ||
-		!inputLastName ||
-		!inputEmail ||
-		!inputBirthDate ||
-		!inputNumber ||
-		!inputRadio ||
-		!inputCheckBox
-	) {
-		e.preventDefault();
-	}
+	} 
 });
