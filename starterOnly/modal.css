@@ -40,6 +40,9 @@ img {
 .main-navbar {
 	float: right;
 }
+.main-navbar .icon{
+	color:#ff0000;
+}
 .topnav a {
 	float: left;
 	display: block;
@@ -506,6 +509,24 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+
+	.topnav{
+		display: flex;
+		justify-content:space-between;
+		align-items:center;
+	}
+
+	.header-logo{
+		align-self: flex-start;
+		display: flex;
+		align-items:center;
+		height:40px;
+		width:200px;
+		padding-top: 15px;
+	}
+	.header-logo img{
+		width:100%;
+	}
 	.hero-content{
 		padding:unset;
 	}
@@ -537,6 +558,13 @@ footer {
 }
 
 @media screen and (max-width: 540px) {
+	.header-logo{
+		width:110px;
+	}
+	.header-logo img{
+		width:100%;
+		padding:0 0 0 5px;
+	}
 	.hero-headline {
 		font-size: 2.8rem;
 		white-space: normal;
