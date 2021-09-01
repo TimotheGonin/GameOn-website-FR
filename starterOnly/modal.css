@@ -133,12 +133,12 @@ main {
 	top: 0;
 	height: 100%;
 	width: 100%;
-	overflow: auto;
+	overflow: hidden;
 	background-color: rgba(26, 39, 156, 0.4);
 }
 
 .content {
-	margin: 5% auto;
+	margin: 90px auto;
 	width: 100%;
 	max-width: 500px;
 	animation-name: modalopen;
@@ -580,6 +580,8 @@ footer {
 		float: right;
 		display: block;
 	}
+
+
 }
 
 @keyframes modalopen {
