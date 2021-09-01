@@ -580,7 +580,9 @@ footer {
 		float: right;
 		display: block;
 	}
-
+	.copyrights{
+		font-size:12px;
+	}
 
 }
 
