@@ -506,8 +506,13 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+	.hero-content{
+		padding:unset;
+	}
 	.hero-headline {
 		font-size: 3rem;
+		font-weight:600;
+		letter-spacing: 1.5px;
 	}
 	.topnav a {
 		display: none;
@@ -533,11 +538,12 @@ footer {
 
 @media screen and (max-width: 540px) {
 	.hero-headline {
-		font-size: 2.5rem;
+		font-size: 2.8rem;
 		white-space: normal;
 	}
 	.hero-text {
-		font-size: 1.2rem;
+		font-size: 1rem;
+		margin-top: 27px;
 	}
 	.topnav a {
 		display: none;
