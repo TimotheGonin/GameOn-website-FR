@@ -153,7 +153,9 @@ function showId(event) {
 function errorDisplay(event) {
 	let value = event.target.value;
 	let element;
+
 	switch (activeInput) {
+
 		//ACTION FOR INPUT TYPE TEXT
 		case "text":
 			if (idTextInput == "firstName") {
@@ -282,13 +284,6 @@ email.addEventListener("focus", showAttribute);
 birthDate.addEventListener("focus", showAttribute);
 quantityOfParticipations.addEventListener("focus", showAttribute);
 
-//OPTIONAL
-locationPastEvent.forEach((btn) =>
-	btn.addEventListener("click", showAttribute)
-);
-
-checkboxTermsOfUse.addEventListener("click", showAttribute);
-// checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENTS - INPUT / CLICK                                                       │
@@ -299,7 +294,13 @@ lastName.addEventListener("input", errorDisplay);
 email.addEventListener("input", errorDisplay);
 birthDate.addEventListener("input", errorDisplay);
 quantityOfParticipations.addEventListener("input", errorDisplay);
+locationPastEvent.forEach((btn) =>
+	btn.addEventListener("click", showAttribute)
+);
 locationPastEvent.forEach((btn) => btn.addEventListener("click", errorDisplay));
+
+
+checkboxTermsOfUse.addEventListener("click", showAttribute);
 checkboxTermsOfUse.addEventListener("click", errorDisplay);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
