@@ -1,9 +1,12 @@
 function editNav() {
 	var x = document.getElementById("myTopnav");
+	let navButton = document.getElementById("navBarButton");
 	if (x.className === "topnav") {
 		x.className += " responsive";
+		// navButton.style.color = "white";
 	} else {
 		x.className = "topnav";
+		// navButton.style.color = "red";
 	}
 }
 
