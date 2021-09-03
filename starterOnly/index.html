@@ -54,7 +54,7 @@
 			<div class="content">
 				<span class="close"></span>
 				<div class="modal-body" id="modal">
-					<form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+					<form name="reserve" action="index.html" method="get" id="registrationForm">
 						<div class="formData">
 							<label for="firstName">Prénom</label><br />
 							<input class="text-control" type="text" id="firstName" name="user_firstName"
@@ -156,6 +156,12 @@
 
 						<input class="btn-submit button" type="submit" value="C'est parti" id="submit-btn" />
 					</form>
+			
+					<!-- VALIDATION MESSAGE -->
+					<aside id="registrationConfirm" style="display: none">
+							<h3 id="confirmationMessage">Merci pour votre inscription</h3>
+							<button class="btn-submit button" id="closeConfirmation">Fermer</button>
+					</aside>
 				</div>
 			</div>
 		</div>

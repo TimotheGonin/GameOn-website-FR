@@ -148,7 +148,7 @@ main {
 	overflow: hidden;
 	position: relative;
 	color: #fff;
-	padding-top: 10px;
+	/* padding-top: 10px; */
 }
 
 .modal-body {
