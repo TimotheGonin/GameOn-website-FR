@@ -3,8 +3,8 @@
 // └──────────────────────────────────────────────────────────────────────────────┘
 
 // FORM / VALIDATION CONFIRMATION MESSAGE
-const registrationForm = document.getElementById('registrationForm'); 
-const registrationConfirm = document.getElementById('registrationConfirm');
+const registrationForm = document.getElementById("registrationForm");
+const registrationConfirm = document.getElementById("registrationConfirm");
 
 // INPUTS
 const firstName = document.getElementById("firstName");
@@ -41,13 +41,16 @@ registrationConfirm.style.display = "none";
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ HIDE ERROR MESSAGE                                                           │
 // └──────────────────────────────────────────────────────────────────────────────┘
-firstNameErrorMessage.style.display = "none";
-lastNameErrorMessage.style.display = "none";
-emailErrorMessage.style.display = "none";
-participartionErrorMessage.style.display = "none";
-birthDateErrorMessage.style.display = "none";
-cityOfParticipationErrorMessage.style.display = "none";
-termsOfUseErrorMessage.style.display = "none";
+function removeErrorMessages() {
+	firstNameErrorMessage.style.display = "none";
+	lastNameErrorMessage.style.display = "none";
+	emailErrorMessage.style.display = "none";
+	participartionErrorMessage.style.display = "none";
+	birthDateErrorMessage.style.display = "none";
+	cityOfParticipationErrorMessage.style.display = "none";
+	termsOfUseErrorMessage.style.display = "none";
+}
+removeErrorMessages();
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ DISABLE/ENABLE RADIO INPUTS                                                  │
@@ -167,7 +170,6 @@ function errorDisplay(event) {
 	let element;
 
 	switch (activeInput) {
-
 		//ACTION FOR INPUT TYPE TEXT
 		case "text":
 			if (idTextInput == "firstName") {
@@ -296,7 +298,6 @@ email.addEventListener("focus", showAttribute);
 birthDate.addEventListener("focus", showAttribute);
 quantityOfParticipations.addEventListener("focus", showAttribute);
 
-
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENTS - INPUT / CLICK                                                       │
 // └──────────────────────────────────────────────────────────────────────────────┘
@@ -310,7 +311,6 @@ locationPastEvent.forEach((btn) =>
 	btn.addEventListener("click", showAttribute)
 );
 locationPastEvent.forEach((btn) => btn.addEventListener("click", errorDisplay));
-
 
 checkboxTermsOfUse.addEventListener("click", showAttribute);
 checkboxTermsOfUse.addEventListener("click", errorDisplay);
@@ -332,5 +332,5 @@ submitButton.addEventListener("click", (e) => {
 		e.preventDefault();
 		registrationForm.style.display = "none";
 		registrationConfirm.style.display = "block";
-	} 
+	}
 });
