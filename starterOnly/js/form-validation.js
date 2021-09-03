@@ -17,6 +17,7 @@ const quantityOfParticipations = document.getElementById(
 const locationPastEvent = document.querySelectorAll("input[type=radio]");
 const checkboxTermsOfUse = document.getElementById("checkboxTermsOfUse");
 const submitButton = document.getElementById("submit-btn");
+const closeConfirmation = document.getElementById("closeConfirmation");
 
 //ERROR MESSAGES
 const firstNameErrorMessage = document.getElementById("firstNameErrorMessage");
@@ -276,6 +277,25 @@ function errorDisplay(event) {
 	}
 }
 // ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ REINIT MODAL FUNCTION                                                        │
+// └──────────────────────────────────────────────────────────────────────────────┘
+
+function reinitModal() {
+	//switch display
+	registrationForm.style.display = "block";
+	registrationConfirm.style.display = "none";
+
+	//remove values
+	firstName.value = "";
+	lastName.value = "";
+	email.value = "";
+	birthDate.value = "";
+	quantityOfParticipations.value= "";
+
+	removeErrorMessages();
+}
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ INPUT VALIDATION STATUS                                                      │
 // └──────────────────────────────────────────────────────────────────────────────┘
 let inputFirstName = false;
@@ -330,7 +350,11 @@ submitButton.addEventListener("click", (e) => {
 		inputCheckBox == true
 	) {
 		e.preventDefault();
+
+		//switch display
 		registrationForm.style.display = "none";
 		registrationConfirm.style.display = "block";
+
+		closeConfirmation.addEventListener("click", reinitModal);
 	}
 });
