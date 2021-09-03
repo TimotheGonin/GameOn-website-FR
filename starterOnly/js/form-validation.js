@@ -1,6 +1,12 @@
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ DOM Elements                                                                 │
 // └──────────────────────────────────────────────────────────────────────────────┘
+
+// FORM / VALIDATION CONFIRMATION MESSAGE
+const registrationForm = document.getElementById('registrationForm'); 
+const registrationConfirm = document.getElementById('registrationConfirm');
+
+// INPUTS
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
 const email = document.getElementById("email");
@@ -26,6 +32,12 @@ const cityOfParticipationErrorMessage = document.getElementById(
 const termsOfUseErrorMessage = document.getElementById(
 	"termsOfUseErrorMessage"
 );
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ HIDE REGISTRATION CONFIRM MESSAGE                                            │
+// └──────────────────────────────────────────────────────────────────────────────┘
+registrationConfirm.style.display = "none";
+
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ HIDE ERROR MESSAGE                                                           │
 // └──────────────────────────────────────────────────────────────────────────────┘
