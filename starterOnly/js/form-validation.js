@@ -318,8 +318,6 @@ checkboxTermsOfUse.addEventListener("click", errorDisplay);
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ CONFIRMATION SUBMIT                                                          │
 // └──────────────────────────────────────────────────────────────────────────────┘
-const formBody = document.querySelector("form");
-const modal = document.getElementById("modal");
 
 submitButton.addEventListener("click", (e) => {
 	if (
@@ -332,9 +330,7 @@ submitButton.addEventListener("click", (e) => {
 		inputCheckBox == true
 	) {
 		e.preventDefault();
-		formBody.style.display = "none";
-		const validationMessage = document.createElement("p");
-		validationMessage.innerHTML = "Merci pour votre inscription";
-		modal.appendChild(validationMessage);
+		registrationForm.style.display = "none";
+		registrationConfirm.style.display = "block";
 	} 
 });
