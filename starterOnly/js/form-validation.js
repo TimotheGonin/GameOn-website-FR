@@ -153,17 +153,18 @@ function termsOfUseIsChecked() {
 // │ INPUT FUNCTIONS                                                              │
 // └──────────────────────────────────────────────────────────────────────────────┘
 
-let activeInput = ""; // variable to store the type of active input
+let activeInput; // variable to store the type of active input
 
 // return attribute of element
 function showAttribute(event) {
-	let inputType = event.currentTarget.getAttributeNames();
-	let value = event.target.value;
-	for (let name of inputType) {
-		value = event.currentTarget.getAttribute(name);
-		if (name == "type") {
-			activeInput = value;
-			return value;
+	let attributeList = event.target.getAttributeNames();
+	
+	for (let attributeName of attributeList) {
+		let attributeNameValue = event.target.getAttribute(attributeName);
+		
+		if (attributeName === "type") {
+			activeInput = attributeNameValue;
+			return activeInput;
 		}
 	}
 }
