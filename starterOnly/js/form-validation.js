@@ -310,6 +310,7 @@ function reinitModal() {
 	quantityOfParticipations.value = "";
 
 	removeErrorMessages();
+	radioDisable();
 }
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
