@@ -169,17 +169,18 @@ function showAttribute(event) {
 	}
 }
 
-let idTextInput = ""; // variable to store the id of the input
+let idTextInput; // variable to store the id of the input
 
 //return id of the element
 function showId(event) {
-	let inputType = event.currentTarget.getAttributeNames();
-	let value = event.target.value;
-	for (let name of inputType) {
-		value = event.currentTarget.getAttribute(name);
-		if (name == "id") {
-			idTextInput = value;
-			return value;
+	let attributeList = event.target.getAttributeNames();
+	
+	for (let attributeName of attributeList) {
+		let attributeNameValue = event.target.getAttribute(attributeName);
+		
+		if (attributeName === "id") {
+			idTextInput = attributeNameValue;
+			return idTextInput;
 		}
 	}
 }
