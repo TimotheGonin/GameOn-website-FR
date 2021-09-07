@@ -100,11 +100,28 @@ function valueIsNumber(value) {
 }
 
 //check date is not empty
-function dateIsNotEmpty(value) {
+function birthDateIsValid(value) {
 	if (value == "") {
 		return false;
 	} else {
-		return true;
+		//DATES INIT
+		let birthDate = new Date(value);
+		let nowDate = new Date();
+
+		let nowYear = nowDate.getFullYear(); //YEAR OF NOW
+
+		let birthYear = birthDate.getFullYear(); // YEAR OF BIRTH
+		// MINIMUM YEAR OF BIRTH
+		let minimumYear = nowYear - 12;
+
+		// MAXIMUM YEAR OF BIRTH
+		let maximumYear = nowYear - 100;
+
+		if (birthYear > minimumYear || birthYear < maximumYear) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
 // country check function loop
@@ -214,7 +231,7 @@ function errorDisplay(event) {
 
 		//ACTION FOR INPUT TYPE DATE
 		case "date":
-			if (dateIsNotEmpty(value) == true) {
+			if (birthDateIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				birthDateErrorMessage.style.display = "none";
 				inputBirthDate = true;
@@ -290,7 +307,7 @@ function reinitModal() {
 	lastName.value = "";
 	email.value = "";
 	birthDate.value = "";
-	quantityOfParticipations.value= "";
+	quantityOfParticipations.value = "";
 
 	removeErrorMessages();
 }
