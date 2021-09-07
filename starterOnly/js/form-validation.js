@@ -311,6 +311,13 @@ function reinitModal() {
 	birthDate.value = "";
 	quantityOfParticipations.value = "";
 
+	//remove inputs status
+	inputFirstName = false;
+	inputLastName = false;
+	inputEmail = false;
+	inputBirthDate = false;
+	inputNumber = false;
+
 	removeErrorMessages();
 	radioDisable();
 }
@@ -355,6 +362,8 @@ locationPastEvent.forEach((btn) => btn.addEventListener("click", errorDisplay));
 checkboxTermsOfUse.addEventListener("click", showAttribute);
 checkboxTermsOfUse.addEventListener("click", errorDisplay);
 
+closeConfirmation.addEventListener("click", reinitModal);
+
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ CONFIRMATION SUBMIT                                                          │
 // └──────────────────────────────────────────────────────────────────────────────┘
@@ -374,7 +383,5 @@ submitButton.addEventListener("click", (e) => {
 		//switch display
 		registrationForm.style.display = "none";
 		registrationConfirm.style.display = "block";
-
-		closeConfirmation.addEventListener("click", reinitModal);
 	}
 });
