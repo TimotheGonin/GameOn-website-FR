@@ -2,7 +2,7 @@
 // │ DOM Elements                                                                 │
 // └──────────────────────────────────────────────────────────────────────────────┘
 
-// FORM / VALIDATION CONFIRMATION MESSAGE
+// REGISTRATION FORM / VALIDATION CONFIRMATION MESSAGE
 const registrationForm = document.getElementById("registrationForm");
 const registrationConfirm = document.getElementById("registrationConfirm");
 
@@ -138,7 +138,6 @@ function countryCheck(coutryArray) {
 		return false;
 	}
 }
-// countryCheck(locationPastEvent);
 
 //Terms of use accept checked ?
 function termsOfUseIsChecked() {
@@ -298,7 +297,6 @@ function errorDisplay(event) {
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ REINIT MODAL FUNCTION                                                        │
 // └──────────────────────────────────────────────────────────────────────────────┘
-
 function reinitModal() {
 	//switch display
 	registrationForm.style.display = "block";
@@ -336,7 +334,6 @@ let inputCheckBox = true;
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENT - GET ATTIRBUTE / ID                                                   │
 // └──────────────────────────────────────────────────────────────────────────────┘
-
 firstName.addEventListener("input", showAttribute);
 lastName.addEventListener("input", showAttribute);
 firstName.addEventListener("input", showId);
@@ -344,24 +341,25 @@ lastName.addEventListener("input", showId);
 email.addEventListener("input", showAttribute);
 birthDate.addEventListener("input", showAttribute);
 quantityOfParticipations.addEventListener("input", showAttribute);
+locationPastEvent.forEach((btn) =>
+	btn.addEventListener("click", showAttribute)
+);
+checkboxTermsOfUse.addEventListener("click", showAttribute);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ EVENTS - INPUT / CLICK                                                       │
+// │ EVENTS - LAUNCH ERROR MESSAGE                                                │
 // └──────────────────────────────────────────────────────────────────────────────┘
-
 firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
 email.addEventListener("input", errorDisplay);
 birthDate.addEventListener("input", errorDisplay);
 quantityOfParticipations.addEventListener("input", errorDisplay);
-locationPastEvent.forEach((btn) =>
-	btn.addEventListener("click", showAttribute)
-);
 locationPastEvent.forEach((btn) => btn.addEventListener("click", errorDisplay));
-
-checkboxTermsOfUse.addEventListener("click", showAttribute);
 checkboxTermsOfUse.addEventListener("click", errorDisplay);
 
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ EVENT - MODAL REINITIALISATION                                               │
+// └──────────────────────────────────────────────────────────────────────────────┘
 closeConfirmation.addEventListener("click", reinitModal);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
@@ -369,17 +367,31 @@ closeConfirmation.addEventListener("click", reinitModal);
 // └──────────────────────────────────────────────────────────────────────────────┘
 
 submitButton.addEventListener("click", (e) => {
-	if (
-		inputFirstName == true &&
-		inputLastName == true &&
-		inputEmail == true &&
-		inputBirthDate == true &&
-		inputNumber == true &&
-		inputRadio == true &&
-		inputCheckBox == true
-	) {
-		e.preventDefault();
+	// if (
+	// 	inputFirstName == true &&
+	// 	inputLastName == true &&
+	// 	inputEmail == true &&
+	// 	inputBirthDate == true &&
+	// 	inputNumber == true &&
+	// 	inputRadio == true &&
+	// 	inputCheckBox == true
+	// ) {
+	// 	e.preventDefault();
 
+	// 	//switch display
+	// 	registrationForm.style.display = "none";
+	// 	registrationConfirm.style.display = "block";
+	// }
+	e.preventDefault();
+	let formIsValid = true;
+
+	if (emailIsValid(email.value) === false) {
+		email.parentElement.setAttribute("data-error-visible", true);
+		emailErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+
+	if (formIsValid) {
 		//switch display
 		registrationForm.style.display = "none";
 		registrationConfirm.style.display = "block";
