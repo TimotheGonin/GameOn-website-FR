@@ -34,10 +34,6 @@ const termsOfUseErrorMessage = document.getElementById(
 	"termsOfUseErrorMessage"
 );
 
-// ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ HIDE REGISTRATION CONFIRM MESSAGE                                            │
-// └──────────────────────────────────────────────────────────────────────────────┘
-registrationConfirm.style.display = "none";
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ HIDE ERROR MESSAGE                                                           │
@@ -51,7 +47,6 @@ function removeErrorMessages() {
 	cityOfParticipationErrorMessage.style.display = "none";
 	termsOfUseErrorMessage.style.display = "none";
 }
-removeErrorMessages();
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ DISABLE/ENABLE RADIO INPUTS                                                  │
@@ -62,7 +57,6 @@ function radioDisable() {
 		radio.checked = false;
 	}
 }
-radioDisable();
 
 function radioEnable() {
 	for (let radio of locationPastEvent) {
@@ -99,23 +93,18 @@ function valueIsNumber(value) {
 	}
 }
 
-//check date is not empty
+// Value is a valid date
 function birthDateIsValid(value) {
 	if (value == "") {
 		return false;
 	} else {
 		//DATES INIT
-		let birthDate = new Date(value);
-		let nowDate = new Date();
-
-		let nowYear = nowDate.getFullYear(); //YEAR OF NOW
-
-		let birthYear = birthDate.getFullYear(); // YEAR OF BIRTH
-		// MINIMUM YEAR OF BIRTH
-		let minimumYear = nowYear - 12;
-
-		// MAXIMUM YEAR OF BIRTH
-		let maximumYear = nowYear - 100;
+		const birthDate = new Date(value);
+		const nowDate = new Date();
+		const nowYear = nowDate.getFullYear(); //YEAR OF NOW
+		const birthYear = birthDate.getFullYear(); // YEAR OF BIRTH
+		const minimumYear = nowYear - 12;// MINIMUM YEAR OF BIRTH
+		const maximumYear = nowYear - 100;// MAXIMUM YEAR OF BIRTH
 
 		if (birthYear > minimumYear || birthYear < maximumYear) {
 			return false;
@@ -139,7 +128,7 @@ function countryCheck(coutryArray) {
 	}
 }
 
-//Terms of use accept checked ?
+//Terms of use checked ?
 function termsOfUseIsChecked() {
 	if (checkboxTermsOfUse.checked == true) {
 		return true;
@@ -151,8 +140,6 @@ function termsOfUseIsChecked() {
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ INPUT FUNCTIONS                                                              │
 // └──────────────────────────────────────────────────────────────────────────────┘
-
-let activeInput; // variable to store the type of active input
 
 // return attribute of element
 function showAttribute(event) {
@@ -167,8 +154,6 @@ function showAttribute(event) {
 		}
 	}
 }
-
-let idTextInput; // variable to store the id of the input
 
 //return id of the element
 function showId(event) {
@@ -186,11 +171,11 @@ function showId(event) {
 
 function errorDisplay(event) {
 	let value = event.target.value;
-	let element;
-
+	
 	switch (activeInput) {
 		//ACTION FOR INPUT TYPE TEXT
 		case "text":
+			let element;
 			if (idTextInput == "firstName") {
 				element = firstNameErrorMessage;
 			} else if (idTextInput == "lastName") {
@@ -201,19 +186,9 @@ function errorDisplay(event) {
 			if (lengthIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				element.style.display = "none";
-				if (element == firstNameErrorMessage) {
-					inputFirstName = true;
-				} else if (element == lastNameErrorMessage) {
-					inputLastName = true;
-				}
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				element.style.display = "block";
-				if (element == firstNameErrorMessage) {
-					inputFirstName = false;
-				} else if (element == lastNameErrorMessage) {
-					inputLastName = false;
-				}
 			}
 			break;
 
@@ -222,11 +197,9 @@ function errorDisplay(event) {
 			if (emailIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				emailErrorMessage.style.display = "none";
-				inputEmail = true;
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				emailErrorMessage.style.display = "block";
-				inputEmail = false;
 			}
 			break;
 
@@ -235,11 +208,9 @@ function errorDisplay(event) {
 			if (birthDateIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				birthDateErrorMessage.style.display = "none";
-				inputBirthDate = true;
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				birthDateErrorMessage.style.display = "block";
-				inputBirthDate = false;
 			}
 			break;
 
@@ -249,15 +220,12 @@ function errorDisplay(event) {
 				radioDisable();
 				this.parentElement.removeAttribute("data-error-visible");
 				participartionErrorMessage.style.display = "none";
-				inputNumber = true;
-				inputRadio = false;
+				
 				if (quantityOfParticipations.value > 0) {
 					cityOfParticipationErrorMessage.style.display = "block";
-					// inputRadio = false;
 					radioEnable();
 				} else {
 					cityOfParticipationErrorMessage.style.display = "none";
-					inputRadio = true;
 					radioDisable();
 				}
 			} else {
@@ -271,10 +239,8 @@ function errorDisplay(event) {
 		case "radio":
 			if (countryCheck(locationPastEvent)) {
 				cityOfParticipationErrorMessage.style.display = "none";
-				inputRadio = true;
 			} else {
 				cityOfParticipationErrorMessage.style.display = "block";
-				inputRadio = false;
 			}
 			break;
 
@@ -282,10 +248,8 @@ function errorDisplay(event) {
 		case "checkbox":
 			if (termsOfUseIsChecked() == true) {
 				termsOfUseErrorMessage.style.display = "none";
-				inputCheckBox = true;
 			} else {
 				termsOfUseErrorMessage.style.display = "block";
-				inputCheckBox = false;
 			}
 			break;
 
@@ -308,13 +272,7 @@ function reinitModal() {
 	email.value = "";
 	birthDate.value = "";
 	quantityOfParticipations.value = "";
-
-	//remove inputs status
-	inputFirstName = false;
-	inputLastName = false;
-	inputEmail = false;
-	inputBirthDate = false;
-	inputNumber = false;
+	checkboxTermsOfUse.checked = false;
 
 	removeErrorMessages();
 	radioDisable();
@@ -323,11 +281,7 @@ function reinitModal() {
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ INPUT VALIDATION STATUS                                                      │
 // └──────────────────────────────────────────────────────────────────────────────┘
-let inputFirstName = false;
-let inputLastName = false;
-let inputEmail = false;
-let inputBirthDate = false;
-let inputNumber = false;
+
 let inputRadio = true;
 let inputCheckBox = true;
 
@@ -335,8 +289,8 @@ let inputCheckBox = true;
 // │ EVENT - GET ATTIRBUTE / ID                                                   │
 // └──────────────────────────────────────────────────────────────────────────────┘
 firstName.addEventListener("input", showAttribute);
-lastName.addEventListener("input", showAttribute);
 firstName.addEventListener("input", showId);
+lastName.addEventListener("input", showAttribute);
 lastName.addEventListener("input", showId);
 email.addEventListener("input", showAttribute);
 birthDate.addEventListener("input", showAttribute);
@@ -407,3 +361,13 @@ submitButton.addEventListener("click", (e) => {
 		registrationConfirm.style.display = "block";
 	}
 });
+
+
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ ON LOAD                                         							  │
+// └──────────────────────────────────────────────────────────────────────────────┘
+reinitModal();
+
+let activeInput; // variable to store the type of active input
+let idTextInput; // variable to store the id of the input[type=text]
