@@ -46,15 +46,17 @@
 		</div>
 
 		<!-- 
-┌──────────────────────────────────────────────────────────────────────────────┐
-│     MODAL                                                                    │
-└──────────────────────────────────────────────────────────────────────────────┘ 
--->
+		┌──────────────────────────────────────────────────────────────────────────────┐
+		│     MODAL                                                                    │
+		└──────────────────────────────────────────────────────────────────────────────┘ 
+		-->
 		<div class="bground">
 			<div class="content">
 				<span class="close"></span>
 				<div class="modal-body" id="modal">
 					<form name="reserve" action="index.html" method="get" id="registrationForm">
+
+						<!-- FIRST NAME -->
 						<div class="formData">
 							<label for="firstName">Prénom</label><br />
 							<input class="text-control" type="text" id="firstName" name="user_firstName"
@@ -63,6 +65,8 @@
 									Veuillez entrer 2 caractères ou plus pour le prénom.
 								</span> 
 						</div>
+
+						<!-- NAME -->
 						<div class="formData">
 							<label for="lastName">Nom</label><br />
 							<input class="text-control" type="text" id="lastName" name="user_lastName" required /><br />
@@ -70,6 +74,8 @@
 								Veuillez entrer 2 caractères ou plus pour le nom.
 							</span> 
 						</div>
+
+						<!-- EMAIL -->
 						<div class="formData">
 							<label for="email">E-mail</label><br />
 							<input class="text-control" type="email" id="email" name="user_email" required /><br />
@@ -77,6 +83,8 @@
 								Veuillez entrer une adresse email valide.
 							</span> 
 						</div>
+
+						<!-- BIRTHDATE -->
 						<div class="formData">
 							<label for="birthDate">Date de naissance</label><br />
 							<input class="text-control" type="date" id="birthDate" name="user_birthDate" required /><br />
@@ -84,6 +92,8 @@
 								Vous devez entrer une date de naissance valide.
 							</span> 
 						</div>
+
+						<!-- EVENT -->
 						<div class="formData">
 							<label for="quantityOfParticipations">À combien de tournois GameOn avez-vous déjà
 								participé ?
@@ -91,46 +101,62 @@
 							<input type="number" class="text-control" id="quantityOfParticipations"
 								name="user_quantityOfParticipations" min="0" max="99" required />
 							<span class="error-message" id="participartionErrorMessage">
-								Vous devez enter un chiffre.
+								Vous devez enter un chiffre valide.
 							</span> 
 						</div>
-						<p class="text-label">Quelles villes ?</p>
-						<span class="error-message" id="cityOfParticipationErrorMessage">
-							Vous devez choisir une option.
-						</span>
+
+						<!-- CITY -->
 						<div class="formData">
+							<label for="user_location" class="text-label">Quelles villes ?</label><br/>
+
+							<!-- 1 -->
 							<input class="checkbox-input" type="radio" id="locationNewYork" name="user_location"
 								value="New York" required/>
 							<label class="checkbox-label" for="locationNewYork">
 								<span class="checkbox-icon"></span>
 								New York</label>
+
+							<!-- 2 -->
 							<input class="checkbox-input" type="radio" id="locationSanFrancisco" name="user_location"
 								value="San Francisco" />
 							<label class="checkbox-label" for="locationSanFrancisco">
 								<span class="checkbox-icon"></span>
 								San Francisco</label>
+							
+							<!-- 3 -->
 							<input class="checkbox-input" type="radio" id="locationSeattle" name="user_location"
 								value="Seattle" />
 							<label class="checkbox-label" for="locationSeattle">
 								<span class="checkbox-icon"></span>
 								Seattle</label>
+							
+							<!-- 4 -->
 							<input class="checkbox-input" type="radio" id="locationChicago" name="user_location"
 								value="Chicago" />
 							<label class="checkbox-label" for="locationChicago">
 								<span class="checkbox-icon"></span>
 								Chicago</label>
+
+							<!-- 5 -->
 							<input class="checkbox-input" type="radio" id="locationBoston" name="user_location"
 								value="Boston" />
 							<label class="checkbox-label" for="locationBoston">
 								<span class="checkbox-icon"></span>
 								Boston</label>
+
+							<!-- 6 -->
 							<input class="checkbox-input" type="radio" id="locationPortland" name="user_location"
 								value="Portland" />
 							<label class="checkbox-label" for="locationPortland">
 								<span class="checkbox-icon"></span>
 								Portland</label>
+							
+							<span class="error-message" id="cityOfParticipationErrorMessage">
+								Vous devez choisir une ville.
+							</span>
 						</div>
 
+						<!-- TERMS OF USE / NEWSLETTER -->
 						<div class="formData">
 							<input class="checkbox-input" type="checkbox" id="checkboxTermsOfUse" checked required />
 							<label class="checkbox2-label" for="checkboxTermsOfUse" required>
@@ -138,7 +164,7 @@
 								J'ai lu et accepté les conditions
 								d'utilisation.
 								<span class="error-message" id="termsOfUseErrorMessage">
-									Veuillez accepeter les conditions
+									Veuillez accepter les conditions
 									d'utilisation.
 								</span>
 							</label>
