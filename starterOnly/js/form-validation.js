@@ -334,16 +334,16 @@ let inputRadio = true;
 let inputCheckBox = true;
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ EVENT - FOCUS                                                                │
+// │ EVENT - GET ATTIRBUTE / ID                                                   │
 // └──────────────────────────────────────────────────────────────────────────────┘
 
-firstName.addEventListener("focus", showAttribute);
-lastName.addEventListener("focus", showAttribute);
-firstName.addEventListener("focus", showId);
-lastName.addEventListener("focus", showId);
-email.addEventListener("focus", showAttribute);
-birthDate.addEventListener("focus", showAttribute);
-quantityOfParticipations.addEventListener("focus", showAttribute);
+firstName.addEventListener("input", showAttribute);
+lastName.addEventListener("input", showAttribute);
+firstName.addEventListener("input", showId);
+lastName.addEventListener("input", showId);
+email.addEventListener("input", showAttribute);
+birthDate.addEventListener("input", showAttribute);
+quantityOfParticipations.addEventListener("input", showAttribute);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENTS - INPUT / CLICK                                                       │
