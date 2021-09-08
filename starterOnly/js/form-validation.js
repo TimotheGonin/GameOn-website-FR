@@ -367,27 +367,37 @@ closeConfirmation.addEventListener("click", reinitModal);
 // └──────────────────────────────────────────────────────────────────────────────┘
 
 submitButton.addEventListener("click", (e) => {
-	// if (
-	// 	inputFirstName == true &&
-	// 	inputLastName == true &&
-	// 	inputEmail == true &&
-	// 	inputBirthDate == true &&
-	// 	inputNumber == true &&
-	// 	inputRadio == true &&
-	// 	inputCheckBox == true
-	// ) {
-	// 	e.preventDefault();
-
-	// 	//switch display
-	// 	registrationForm.style.display = "none";
-	// 	registrationConfirm.style.display = "block";
-	// }
 	e.preventDefault();
 	let formIsValid = true;
 
+	if (lengthIsValid(firstName.value) === false) {
+		firstName.parentElement.setAttribute("data-error-visible", true);
+		firstNameErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+	if (lengthIsValid(lastName.value) === false) {
+		lastName.parentElement.setAttribute("data-error-visible", true);
+		lastNameErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
 	if (emailIsValid(email.value) === false) {
 		email.parentElement.setAttribute("data-error-visible", true);
 		emailErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+	if (birthDateIsValid(birthDate.value) === false) {
+		birthDate.parentElement.setAttribute("data-error-visible", true);
+		birthDateErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+	if (valueIsNumber(quantityOfParticipations.value) === false) {
+		quantityOfParticipations.parentElement.setAttribute("data-error-visible", true);
+		participartionErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+	if (termsOfUseIsChecked() === false) {
+		checkboxTermsOfUse.parentElement.setAttribute("data-error-visible", true);
+		termsOfUseErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
 
