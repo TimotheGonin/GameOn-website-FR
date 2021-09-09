@@ -360,7 +360,7 @@ submitButton.addEventListener("click", (e) => {
 			formIsValid = false;
 		}
 	}
-	
+
 	if (termsOfUseIsChecked() === false) {
 		checkboxTermsOfUse.parentElement.setAttribute("data-error-visible", true);
 		termsOfUseErrorMessage.style.display = "block";
@@ -370,7 +370,7 @@ submitButton.addEventListener("click", (e) => {
 	if (formIsValid) {
 		//switch display
 		registrationForm.style.display = "none";
-		registrationConfirm.style.display = "block";
+		registrationConfirm.style.display = "flex";
 	}
 });
 
