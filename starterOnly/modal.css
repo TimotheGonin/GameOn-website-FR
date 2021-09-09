@@ -40,13 +40,9 @@ img {
 .main-navbar {
 	float: right;
 }
-.main-navbar .icon{
-	color:black;
-}
 .topnav a {
 	float: left;
 	display: block;
-	color: #000000;
 	text-align: center;
 	padding: 12px 12px;
 	margin: 5px;
@@ -57,7 +53,7 @@ img {
 
 .topnav a:hover {
 	background-color: #ff0000;
-	color: #ffffff;
+	color: #ffffff !important;
 	border-radius: 15px;
 }
 
@@ -69,6 +65,7 @@ img {
 
 .topnav .icon {
 	display: none;
+	color:#ff0000;
 }
 
 main {
