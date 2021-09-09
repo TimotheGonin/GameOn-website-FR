@@ -360,7 +360,6 @@ submitButton.addEventListener("click", (e) => {
 			formIsValid = false;
 		}
 	}
-
 	if (termsOfUseIsChecked() === false) {
 		checkboxTermsOfUse.parentElement.setAttribute("data-error-visible", true);
 		termsOfUseErrorMessage.style.display = "block";
