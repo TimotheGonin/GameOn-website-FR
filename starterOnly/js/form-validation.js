@@ -115,7 +115,7 @@ function birthDateIsValid(value) {
 }
 // country check function loop
 function countryCheck(coutryArray) {
-	let counter;
+	let counter = 0;
 	for (let country of coutryArray) {
 		if (country.checked) {
 			counter++;
@@ -329,26 +329,38 @@ submitButton.addEventListener("click", (e) => {
 		firstNameErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
+
 	if (lengthIsValid(lastName.value) === false) {
 		lastName.parentElement.setAttribute("data-error-visible", true);
 		lastNameErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
+
 	if (emailIsValid(email.value) === false) {
 		email.parentElement.setAttribute("data-error-visible", true);
 		emailErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
+
 	if (birthDateIsValid(birthDate.value) === false) {
 		birthDate.parentElement.setAttribute("data-error-visible", true);
 		birthDateErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
+
 	if (valueIsNumber(quantityOfParticipations.value) === false) {
 		quantityOfParticipations.parentElement.setAttribute("data-error-visible", true);
 		participartionErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
+
+	if (quantityOfParticipations.value > 0) {
+		if(!countryCheck(locationPastEvent)){
+			cityOfParticipationErrorMessage.style.display = "block";
+			formIsValid = false;
+		}
+	}
+	
 	if (termsOfUseIsChecked() === false) {
 		checkboxTermsOfUse.parentElement.setAttribute("data-error-visible", true);
 		termsOfUseErrorMessage.style.display = "block";
