@@ -49,6 +49,7 @@ img {
 	text-decoration: none;
 	font-size: 20px;
 	font-family: Roboto, sans-serif;
+	color:black;
 }
 
 .topnav a:hover {
@@ -130,12 +131,12 @@ main {
 	top: 0;
 	height: 100%;
 	width: 100%;
-	overflow: hidden;
+	overflow: auto;
 	background-color: rgba(26, 39, 156, 0.4);
 }
 
 .content {
-	margin: 90px auto;
+	margin: 110px auto;
 	width: 100%;
 	max-width: 500px;
 	animation-name: modalopen;
@@ -567,6 +568,7 @@ footer {
 }
 
 @media screen and (max-width: 540px) {
+	
 	.header-logo{
 		width:110px;
 	}
@@ -591,8 +593,20 @@ footer {
 		float: right;
 		display: block;
 	}
-	.btn-signup{
+	.content{
+		margin: 70px auto;
+	}
+	.modal-body {min-height: 640px;}
+	.text-label {
+		font-weight: normal;
+		font-size: 13px;
+	}
+	main{
+		font-size:inherit;
+	}
+	.btn-signup, .btn-submit{
 		font-size: 1rem;
+		padding: 8px 45px;
 	}
 	.copyrights{
 		font-size:12px;
