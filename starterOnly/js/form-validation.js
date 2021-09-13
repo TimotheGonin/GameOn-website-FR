@@ -1,6 +1,12 @@
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ DOM Elements                                                                 │
 // └──────────────────────────────────────────────────────────────────────────────┘
+
+// REGISTRATION FORM / VALIDATION CONFIRMATION MESSAGE
+const registrationForm = document.getElementById("registrationForm");
+const registrationConfirm = document.getElementById("registrationConfirm");
+
+// INPUTS
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
 const email = document.getElementById("email");
@@ -11,6 +17,7 @@ const quantityOfParticipations = document.getElementById(
 const locationPastEvent = document.querySelectorAll("input[type=radio]");
 const checkboxTermsOfUse = document.getElementById("checkboxTermsOfUse");
 const submitButton = document.getElementById("submit-btn");
+const closeConfirmation = document.getElementById("closeConfirmation");
 
 //ERROR MESSAGES
 const firstNameErrorMessage = document.getElementById("firstNameErrorMessage");
@@ -26,16 +33,20 @@ const cityOfParticipationErrorMessage = document.getElementById(
 const termsOfUseErrorMessage = document.getElementById(
 	"termsOfUseErrorMessage"
 );
+
+
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ HIDE ERROR MESSAGE                                                           │
 // └──────────────────────────────────────────────────────────────────────────────┘
-firstNameErrorMessage.style.display = "none";
-lastNameErrorMessage.style.display = "none";
-emailErrorMessage.style.display = "none";
-participartionErrorMessage.style.display = "none";
-birthDateErrorMessage.style.display = "none";
-cityOfParticipationErrorMessage.style.display = "none";
-termsOfUseErrorMessage.style.display = "none";
+function removeErrorMessages() {
+	firstNameErrorMessage.style.display = "none";
+	lastNameErrorMessage.style.display = "none";
+	emailErrorMessage.style.display = "none";
+	participartionErrorMessage.style.display = "none";
+	birthDateErrorMessage.style.display = "none";
+	cityOfParticipationErrorMessage.style.display = "none";
+	termsOfUseErrorMessage.style.display = "none";
+}
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ DISABLE/ENABLE RADIO INPUTS                                                  │
@@ -46,7 +57,6 @@ function radioDisable() {
 		radio.checked = false;
 	}
 }
-radioDisable();
 
 function radioEnable() {
 	for (let radio of locationPastEvent) {
@@ -83,17 +93,29 @@ function valueIsNumber(value) {
 	}
 }
 
-//check date is not empty
-function dateIsNotEmpty(value) {
+// Value is a valid date
+function birthDateIsValid(value) {
 	if (value == "") {
 		return false;
 	} else {
-		return true;
+		//DATES INIT
+		const birthDate = new Date(value);
+		const nowDate = new Date();
+		const nowYear = nowDate.getFullYear(); //YEAR OF NOW
+		const birthYear = birthDate.getFullYear(); // YEAR OF BIRTH
+		const minimumYear = nowYear - 12;// MINIMUM YEAR OF BIRTH
+		const maximumYear = nowYear - 100;// MAXIMUM YEAR OF BIRTH
+
+		if (birthYear > minimumYear || birthYear < maximumYear) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
 // country check function loop
 function countryCheck(coutryArray) {
-	let counter;
+	let counter = 0;
 	for (let country of coutryArray) {
 		if (country.checked) {
 			counter++;
@@ -105,9 +127,8 @@ function countryCheck(coutryArray) {
 		return false;
 	}
 }
-// countryCheck(locationPastEvent);
 
-//Terms of use accept checked ?
+//Terms of use checked ?
 function termsOfUseIsChecked() {
 	if (checkboxTermsOfUse.checked == true) {
 		return true;
@@ -120,42 +141,41 @@ function termsOfUseIsChecked() {
 // │ INPUT FUNCTIONS                                                              │
 // └──────────────────────────────────────────────────────────────────────────────┘
 
-let activeInput = ""; // variable to store the type of active input
-
 // return attribute of element
 function showAttribute(event) {
-	let inputType = event.currentTarget.getAttributeNames();
-	let value = event.target.value;
-	for (let name of inputType) {
-		value = event.currentTarget.getAttribute(name);
-		if (name == "type") {
-			activeInput = value;
-			return value;
+	let attributeList = event.target.getAttributeNames();
+	
+	for (let attributeName of attributeList) {
+		let attributeNameValue = event.target.getAttribute(attributeName);
+		
+		if (attributeName === "type") {
+			activeInput = attributeNameValue;
+			return activeInput;
 		}
 	}
 }
 
-let idTextInput = ""; // variable to store the id of the input
-
 //return id of the element
 function showId(event) {
-	let inputType = event.currentTarget.getAttributeNames();
-	let value = event.target.value;
-	for (let name of inputType) {
-		value = event.currentTarget.getAttribute(name);
-		if (name == "id") {
-			idTextInput = value;
-			return value;
+	let attributeList = event.target.getAttributeNames();
+	
+	for (let attributeName of attributeList) {
+		let attributeNameValue = event.target.getAttribute(attributeName);
+		
+		if (attributeName === "id") {
+			idTextInput = attributeNameValue;
+			return idTextInput;
 		}
 	}
 }
 
 function errorDisplay(event) {
 	let value = event.target.value;
-	let element;
+	
 	switch (activeInput) {
 		//ACTION FOR INPUT TYPE TEXT
 		case "text":
+			let element;
 			if (idTextInput == "firstName") {
 				element = firstNameErrorMessage;
 			} else if (idTextInput == "lastName") {
@@ -166,19 +186,9 @@ function errorDisplay(event) {
 			if (lengthIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				element.style.display = "none";
-				if (element == firstNameErrorMessage) {
-					inputFirstName = true;
-				} else if (element == lastNameErrorMessage) {
-					inputLastName = true;
-				}
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				element.style.display = "block";
-				if (element == firstNameErrorMessage) {
-					inputFirstName = false;
-				} else if (element == lastNameErrorMessage) {
-					inputLastName = false;
-				}
 			}
 			break;
 
@@ -187,24 +197,20 @@ function errorDisplay(event) {
 			if (emailIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				emailErrorMessage.style.display = "none";
-				inputEmail = true;
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				emailErrorMessage.style.display = "block";
-				inputEmail = false;
 			}
 			break;
 
 		//ACTION FOR INPUT TYPE DATE
 		case "date":
-			if (dateIsNotEmpty(value) == true) {
+			if (birthDateIsValid(value) == true) {
 				this.parentElement.removeAttribute("data-error-visible");
 				birthDateErrorMessage.style.display = "none";
-				inputBirthDate = true;
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				birthDateErrorMessage.style.display = "block";
-				inputBirthDate = false;
 			}
 			break;
 
@@ -214,20 +220,17 @@ function errorDisplay(event) {
 				radioDisable();
 				this.parentElement.removeAttribute("data-error-visible");
 				participartionErrorMessage.style.display = "none";
-				inputNumber = true;
+				
 				if (quantityOfParticipations.value > 0) {
 					cityOfParticipationErrorMessage.style.display = "block";
-					inputRadio = false;
 					radioEnable();
 				} else {
 					cityOfParticipationErrorMessage.style.display = "none";
-					inputRadio = true;
 					radioDisable();
 				}
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				participartionErrorMessage.style.display = "block";
-				inputNumber = false;
 			}
 			break;
 
@@ -235,10 +238,8 @@ function errorDisplay(event) {
 		case "radio":
 			if (countryCheck(locationPastEvent)) {
 				cityOfParticipationErrorMessage.style.display = "none";
-				inputRadio = true;
 			} else {
 				cityOfParticipationErrorMessage.style.display = "block";
-				inputRadio = false;
 			}
 			break;
 
@@ -246,10 +247,8 @@ function errorDisplay(event) {
 		case "checkbox":
 			if (termsOfUseIsChecked() == true) {
 				termsOfUseErrorMessage.style.display = "none";
-				inputCheckBox = true;
 			} else {
 				termsOfUseErrorMessage.style.display = "block";
-				inputCheckBox = false;
 			}
 			break;
 
@@ -259,40 +258,43 @@ function errorDisplay(event) {
 	}
 }
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ INPUT VALIDATION STATUS                                                      │
+// │ REINIT MODAL FUNCTION                                                        │
 // └──────────────────────────────────────────────────────────────────────────────┘
-let inputFirstName = false;
-let inputLastName = false;
-let inputEmail = false;
-let inputBirthDate = false;
-let inputNumber = false;
-let inputRadio = true;
-let inputCheckBox = true;
+function reinitModal() {
+	//switch display
+	registrationForm.style.display = "block";
+	registrationConfirm.style.display = "none";
+
+	//remove values
+	firstName.value = "";
+	lastName.value = "";
+	email.value = "";
+	birthDate.value = "";
+	quantityOfParticipations.value = "";
+	checkboxTermsOfUse.checked = false;
+
+	removeErrorMessages();
+	radioDisable();
+}
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ EVENT - FOCUS                                                                │
+// │ EVENT - GET ATTIRBUTE / ID                                                   │
 // └──────────────────────────────────────────────────────────────────────────────┘
-
-firstName.addEventListener("focus", showAttribute);
-lastName.addEventListener("focus", showAttribute);
-firstName.addEventListener("focus", showId);
-lastName.addEventListener("focus", showId);
-email.addEventListener("focus", showAttribute);
-birthDate.addEventListener("focus", showAttribute);
-quantityOfParticipations.addEventListener("focus", showAttribute);
-
-//OPTIONAL
+firstName.addEventListener("input", showAttribute);
+firstName.addEventListener("input", showId);
+lastName.addEventListener("input", showAttribute);
+lastName.addEventListener("input", showId);
+email.addEventListener("input", showAttribute);
+birthDate.addEventListener("input", showAttribute);
+quantityOfParticipations.addEventListener("input", showAttribute);
 locationPastEvent.forEach((btn) =>
 	btn.addEventListener("click", showAttribute)
 );
-
 checkboxTermsOfUse.addEventListener("click", showAttribute);
-// checkboxNotifiedOfUpcomingEvents.addEventListener("focus", showAttribute);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ EVENTS - INPUT / CLICK                                                       │
+// │ EVENTS - LAUNCH ERROR MESSAGE                                                │
 // └──────────────────────────────────────────────────────────────────────────────┘
-
 firstName.addEventListener("input", errorDisplay);
 lastName.addEventListener("input", errorDisplay);
 email.addEventListener("input", errorDisplay);
@@ -302,35 +304,73 @@ locationPastEvent.forEach((btn) => btn.addEventListener("click", errorDisplay));
 checkboxTermsOfUse.addEventListener("click", errorDisplay);
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ EVENT - MODAL REINITIALISATION                                               │
+// └──────────────────────────────────────────────────────────────────────────────┘
+closeConfirmation.addEventListener("click", reinitModal);
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ CONFIRMATION SUBMIT                                                          │
 // └──────────────────────────────────────────────────────────────────────────────┘
-const formBody = document.querySelector("form");
-const modal = document.getElementById("modal");
 
 submitButton.addEventListener("click", (e) => {
-	if (
-		inputFirstName == true &&
-		inputLastName == true &&
-		inputEmail == true &&
-		inputBirthDate == true &&
-		inputNumber == true &&
-		inputRadio == true &&
-		inputCheckBox == true
-	) {
-		e.preventDefault();
-		formBody.style.display = "none";
-		const validationMessage = document.createElement("p");
-		validationMessage.innerHTML = "Merci pour votre inscription";
-		modal.appendChild(validationMessage);
-	} else if (
-		!inputFirstName ||
-		!inputLastName ||
-		!inputEmail ||
-		!inputBirthDate ||
-		!inputNumber ||
-		!inputRadio ||
-		!inputCheckBox
-	) {
-		e.preventDefault();
+	e.preventDefault();
+	let formIsValid = true;
+
+	if (lengthIsValid(firstName.value) === false) {
+		firstName.parentElement.setAttribute("data-error-visible", true);
+		firstNameErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+
+	if (lengthIsValid(lastName.value) === false) {
+		lastName.parentElement.setAttribute("data-error-visible", true);
+		lastNameErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+
+	if (emailIsValid(email.value) === false) {
+		email.parentElement.setAttribute("data-error-visible", true);
+		emailErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+
+	if (birthDateIsValid(birthDate.value) === false) {
+		birthDate.parentElement.setAttribute("data-error-visible", true);
+		birthDateErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+
+	if (valueIsNumber(quantityOfParticipations.value) === false) {
+		quantityOfParticipations.parentElement.setAttribute("data-error-visible", true);
+		participartionErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+
+	if (quantityOfParticipations.value > 0) {
+		if(!countryCheck(locationPastEvent)){
+			cityOfParticipationErrorMessage.style.display = "block";
+			formIsValid = false;
+		}
+	}
+	if (termsOfUseIsChecked() === false) {
+		checkboxTermsOfUse.parentElement.setAttribute("data-error-visible", true);
+		termsOfUseErrorMessage.style.display = "block";
+		formIsValid = false;
+	}
+
+	if (formIsValid) {
+		//switch display
+		registrationForm.style.display = "none";
+		registrationConfirm.style.display = "flex";
 	}
 });
+
+
+
+// ┌──────────────────────────────────────────────────────────────────────────────┐
+// │ ON LOAD                                         							  │
+// └──────────────────────────────────────────────────────────────────────────────┘
+reinitModal();
+
+let activeInput; // variable to store the type of active input
+let idTextInput; // variable to store the id of the input[type=text]
