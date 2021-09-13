@@ -11,7 +11,6 @@
 /* Landing Page */
 
 body {
-	margin: 0;
 	display: flex;
 	flex-direction: column;
 	background-image: url("background.png");
@@ -32,7 +31,7 @@ img {
 
 .topnav {
 	overflow: hidden;
-	margin: 3.5%;
+	margin: 2.5% 2% 0;
 }
 .header-logo {
 	float: left;
@@ -40,24 +39,21 @@ img {
 .main-navbar {
 	float: right;
 }
-.main-navbar .icon{
-	color:black;
-}
 .topnav a {
 	float: left;
 	display: block;
-	color: #000000;
 	text-align: center;
 	padding: 12px 12px;
 	margin: 5px;
 	text-decoration: none;
 	font-size: 20px;
 	font-family: Roboto, sans-serif;
+	color:black;
 }
 
 .topnav a:hover {
 	background-color: #ff0000;
-	color: #ffffff;
+	color: #ffffff !important;
 	border-radius: 15px;
 }
 
@@ -69,13 +65,13 @@ img {
 
 .topnav .icon {
 	display: none;
+	color:#ff0000;
 }
 
 main {
 	font-size: 130%;
 	font-weight: bolder;
 	color: black;
-	padding-top: 0.5vw;
 	padding-left: 2vw;
 	padding-right: 2vw;
 	margin: 1px 20px 15px;
@@ -133,12 +129,12 @@ main {
 	top: 0;
 	height: 100%;
 	width: 100%;
-	overflow: hidden;
+	overflow: auto;
 	background-color: rgba(26, 39, 156, 0.4);
 }
 
 .content {
-	margin: 90px auto;
+	margin: 110px auto;
 	width: 100%;
 	max-width: 500px;
 	animation-name: modalopen;
@@ -397,7 +393,7 @@ input[data-error]::after {
 	grid-template-columns: repeat(12, 1fr);
 	overflow: hidden;
 	box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
-	margin-bottom: 10px;
+	/* margin-bottom: 10px; */
 }
 .hero-content {
 	padding: 51px 67px;
@@ -467,11 +463,7 @@ input[data-error]::after {
 .hero-section > .btn-signup {
 	display: none;
 }
-footer {
-	padding-left: 2vw;
-	padding-right: 2vw;
-	margin: 0 20px;
-}
+
 
 /* ┌──────────────────────────────────────────────────────────────────────────────┐
 │ MEDIA QUERIES                                                                │
@@ -504,7 +496,7 @@ footer {
 	}
 	.hero-img img {
 		border-radius: 10px;
-		margin-top: 40px;
+		margin-top: 25px;
 	}
 	.hero-section > .btn-signup {
 		display: block;
@@ -564,9 +556,13 @@ footer {
 		display: block;
 		text-align: left;
 	}
+	.copyrights {
+		margin-top: 15px;
+	}
 }
 
 @media screen and (max-width: 540px) {
+	
 	.header-logo{
 		width:110px;
 	}
@@ -576,11 +572,13 @@ footer {
 	}
 	.hero-headline {
 		font-size: 2.8rem;
+		font-size: 2.3rem;
 		white-space: normal;
+		line-height: 3rem;
 	}
 	.hero-text {
-		font-size: 1rem;
-		margin-top: 27px;
+		font-size: 0.8rem;
+		margin-top: 20px;
 	}
 	.topnav a {
 		display: none;
@@ -588,6 +586,21 @@ footer {
 	.topnav a.icon {
 		float: right;
 		display: block;
+	}
+	.content{
+		margin: 70px auto;
+	}
+	.modal-body {min-height: 640px;}
+	.text-label {
+		font-weight: normal;
+		font-size: 13px;
+	}
+	main{
+		font-size:inherit;
+	}
+	.btn-signup, .btn-submit{
+		font-size: 1rem;
+		padding: 8px 45px;
 	}
 	.copyrights{
 		font-size:12px;

@@ -3,10 +3,10 @@ function editNav() {
 	let navButton = document.getElementById("navBarButton");
 	if (x.className === "topnav") {
 		x.className += " responsive";
-		// navButton.style.color = "white";
+		navButton.style.color = "white";
 	} else {
 		x.className = "topnav";
-		// navButton.style.color = "red";
+		navButton.style.color = "red";
 	}
 }
 
@@ -28,11 +28,10 @@ modalBtnClose.forEach((btn) => btn.addEventListener("click", launchModal));
 let modalIsActive = false; // modal status init
 
 function launchModal() {
-	if (modalIsActive == false) {
+	if (!modalIsActive) {
 		modalbg.style.display = "block";
 		modalIsActive = true;
-		console.log(modalIsActive);
-	} else if (modalIsActive == true) {
+	} else if (modalIsActive) {
 		modalbg.style.display = "none";
 		modalIsActive = false;
 	}
