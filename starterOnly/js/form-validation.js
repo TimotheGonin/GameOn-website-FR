@@ -231,7 +231,6 @@ function errorDisplay(event) {
 			} else {
 				this.parentElement.setAttribute("data-error-visible", true);
 				participartionErrorMessage.style.display = "block";
-				inputNumber = false;
 			}
 			break;
 
@@ -277,13 +276,6 @@ function reinitModal() {
 	removeErrorMessages();
 	radioDisable();
 }
-
-// ┌──────────────────────────────────────────────────────────────────────────────┐
-// │ INPUT VALIDATION STATUS                                                      │
-// └──────────────────────────────────────────────────────────────────────────────┘
-
-let inputRadio = true;
-let inputCheckBox = true;
 
 // ┌──────────────────────────────────────────────────────────────────────────────┐
 // │ EVENT - GET ATTIRBUTE / ID                                                   │
