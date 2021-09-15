@@ -130,7 +130,7 @@ function countryCheck(coutryArray) {
 
 //Terms of use checked ?
 function termsOfUseIsChecked() {
-	if (checkboxTermsOfUse.checked == true) {
+	if (checkboxTermsOfUse.checked === true) {
 		return true;
 	} else {
 		return false;
@@ -176,14 +176,14 @@ function errorDisplay(event) {
 		//ACTION FOR INPUT TYPE TEXT
 		case "text":
 			let element;
-			if (idTextInput == "firstName") {
+			if (idTextInput === "firstName") {
 				element = firstNameErrorMessage;
-			} else if (idTextInput == "lastName") {
+			} else if (idTextInput === "lastName") {
 				element = lastNameErrorMessage;
 			}
 
 			lengthIsValid(value);
-			if (lengthIsValid(value) == true) {
+			if (lengthIsValid(value)) {
 				this.parentElement.removeAttribute("data-error-visible");
 				element.style.display = "none";
 			} else {
@@ -194,7 +194,7 @@ function errorDisplay(event) {
 
 		//ACTION FOR INPUT TYPE MAIL
 		case "email":
-			if (emailIsValid(value) == true) {
+			if (emailIsValid(value)) {
 				this.parentElement.removeAttribute("data-error-visible");
 				emailErrorMessage.style.display = "none";
 			} else {
@@ -205,7 +205,7 @@ function errorDisplay(event) {
 
 		//ACTION FOR INPUT TYPE DATE
 		case "date":
-			if (birthDateIsValid(value) == true) {
+			if (birthDateIsValid(value)) {
 				this.parentElement.removeAttribute("data-error-visible");
 				birthDateErrorMessage.style.display = "none";
 			} else {
@@ -216,7 +216,7 @@ function errorDisplay(event) {
 
 		//ACTION FOR INPUT TYPE NUMBER
 		case "number":
-			if (valueIsNumber(value) == true) {
+			if (valueIsNumber(value)) {
 				radioDisable();
 				this.parentElement.removeAttribute("data-error-visible");
 				participartionErrorMessage.style.display = "none";
@@ -245,7 +245,7 @@ function errorDisplay(event) {
 
 		// ACTION FOR INPUT TYPE CHECKBOX
 		case "checkbox":
-			if (termsOfUseIsChecked() == true) {
+			if (termsOfUseIsChecked()) {
 				termsOfUseErrorMessage.style.display = "none";
 			} else {
 				termsOfUseErrorMessage.style.display = "block";
@@ -316,31 +316,31 @@ submitButton.addEventListener("click", (e) => {
 	e.preventDefault();
 	let formIsValid = true;
 
-	if (lengthIsValid(firstName.value) === false) {
+	if (!lengthIsValid(firstName.value)) {
 		firstName.parentElement.setAttribute("data-error-visible", true);
 		firstNameErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
 
-	if (lengthIsValid(lastName.value) === false) {
+	if (!lengthIsValid(lastName.value)) {
 		lastName.parentElement.setAttribute("data-error-visible", true);
 		lastNameErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
 
-	if (emailIsValid(email.value) === false) {
+	if (!emailIsValid(email.value)) {
 		email.parentElement.setAttribute("data-error-visible", true);
 		emailErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
 
-	if (birthDateIsValid(birthDate.value) === false) {
+	if (!birthDateIsValid(birthDate.value)) {
 		birthDate.parentElement.setAttribute("data-error-visible", true);
 		birthDateErrorMessage.style.display = "block";
 		formIsValid = false;
 	}
 
-	if (valueIsNumber(quantityOfParticipations.value) === false) {
+	if (!valueIsNumber(quantityOfParticipations.value)) {
 		quantityOfParticipations.parentElement.setAttribute("data-error-visible", true);
 		participartionErrorMessage.style.display = "block";
 		formIsValid = false;
@@ -352,7 +352,7 @@ submitButton.addEventListener("click", (e) => {
 			formIsValid = false;
 		}
 	}
-	if (termsOfUseIsChecked() === false) {
+	if (!termsOfUseIsChecked()) {
 		checkboxTermsOfUse.parentElement.setAttribute("data-error-visible", true);
 		termsOfUseErrorMessage.style.display = "block";
 		formIsValid = false;
