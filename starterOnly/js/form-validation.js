@@ -95,7 +95,7 @@ function valueIsNumber(value) {
 
 // Value is a valid date
 function birthDateIsValid(value) {
-	if (value == "") {
+	if (value === "") {
 		return false;
 	} else {
 		//DATES INIT
