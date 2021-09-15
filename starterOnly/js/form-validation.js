@@ -99,12 +99,12 @@ function birthDateIsValid(value) {
 		return false;
 	} else {
 		//DATES INIT
-		const birthDate = new Date(value);
-		const nowDate = new Date();
-		const nowYear = nowDate.getFullYear(); //YEAR OF NOW
-		const birthYear = birthDate.getFullYear(); // YEAR OF BIRTH
-		const minimumYear = nowYear - 12;// MINIMUM YEAR OF BIRTH
-		const maximumYear = nowYear - 100;// MAXIMUM YEAR OF BIRTH
+		let birthDate = new Date(value);
+		let nowDate = new Date();
+		let nowYear = nowDate.getFullYear(); //YEAR OF NOW
+		let birthYear = birthDate.getFullYear(); // YEAR OF BIRTH
+		let minimumYear = nowYear - 12;// MINIMUM YEAR OF BIRTH
+		let maximumYear = nowYear - 100;// MAXIMUM YEAR OF BIRTH
 
 		if (birthYear > minimumYear || birthYear < maximumYear) {
 			return false;
